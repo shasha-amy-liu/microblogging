@@ -16,7 +16,7 @@ FLUSH PRIVILEGES
   3.1 start tomcat in 8080
   3.2 change installation address of tomcat folder in pom.xml, e.g.:
     for linux
-      <tomcat.path>/home/jhan/java/apache-tomcat-6.0.35</tomcat.path>
+      <tomcat.path>/home/doudou/java/apache-tomcat-6.0.35</tomcat.path>
     for windows
       <tomcat.path>D:\\java\\tomcat6\\</tomcat.path>
 4. run maven build command 
