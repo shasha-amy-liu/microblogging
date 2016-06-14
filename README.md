@@ -1,9 +1,21 @@
-A very small microblogging site using maven + mysql + hibernate + spring +
-spring mvc + jquery.
+# Microblogging
+A very small microblogging site using maven + mysql + hibernate + spring + spring mvc + jquery.
+
 User can post, follow other people and watch their posts.
 
-How to build
+## Software stack
+* Java 8
+* Spring 4.2
+* Hibernate 4
+* Maven 3
+* MySQL 5.5
+* Tomcat 8
+* MongoDB 3.2
+
+## Initialization
 1. install java 8, maven 3, mysql 5.5 and tomcat 8
+
+## Build
 2. settings for mysql
   2.1 create database demo
 create database demo
