@@ -4,61 +4,61 @@ import java.util.Date;
 
 import microblogging.model.Blog;
 
-
 public class BlogVO {
 
-	private String content;
-	private String timeStamp;
-	private String blogger;
-	private Long userId;
-	private Long id;
+    private String content;
+    private String timeStamp;
+    private String blogger;
+    private Long userId;
+    private Long id;
 
-	public BlogVO(Blog blog) {
-		setBlogger(blog.getUser().getUsername());
-		setContent(blog.getContent());
-		setId(blog.getId());
-		String timeStamp = new java.text.SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(new Date(blog.getTimestamp().getTime()));
-		setTimeStamp(timeStamp);
-		setUserId(blog.getUser().getId());
-	}
-	
-	public Long getId() {
-		return id;
-	}
+    public BlogVO(Blog blog) {
+        setBlogger(blog.getUser().getUsername());
+        setContent(blog.getContent());
+        setId(blog.getId());
+        String timeStamp = new java.text.SimpleDateFormat("MM/dd/yyyy HH:mm:ss")
+                .format(new Date(blog.getTimestamp().getTime()));
+        setTimeStamp(timeStamp);
+        setUserId(blog.getUser().getId());
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public String getContent() {
-		return content;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+    public String getContent() {
+        return content;
+    }
 
-	public Long getUserId() {
-		return userId;
-	}
+    public void setContent(String content) {
+        this.content = content;
+    }
 
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
+    public Long getUserId() {
+        return userId;
+    }
 
-	public String getTimeStamp() {
-		return timeStamp;
-	}
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 
-	public void setTimeStamp(String timeStamp) {
-		this.timeStamp = timeStamp;
-	}
+    public String getTimeStamp() {
+        return timeStamp;
+    }
 
-	public String getBlogger() {
-		return blogger;
-	}
+    public void setTimeStamp(String timeStamp) {
+        this.timeStamp = timeStamp;
+    }
 
-	public void setBlogger(String blogger) {
-		this.blogger = blogger;
-	}	
+    public String getBlogger() {
+        return blogger;
+    }
+
+    public void setBlogger(String blogger) {
+        this.blogger = blogger;
+    }
 }

@@ -4,22 +4,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping({"/", "/index"})
+@RequestMapping({ "/", "/index" })
 public class IndexController {
 
-//	public static final int DEFAULT_SPITTLES_PER_PAGE = 25;
-//
-//	private BlogService blogService;
-//	
-//	@Inject
-//	public IndexController (BlogService blogService) {
-//		this.blogService = blogService;
-//	}
+    // public static final int DEFAULT_SPITTLES_PER_PAGE = 25;
+    //
+    // private BlogService blogService;
+    //
+    // @Inject
+    // public IndexController (BlogService blogService) {
+    // this.blogService = blogService;
+    // }
 
-	@RequestMapping
-	public String showIndexPage() {
-//		System.out.println("get recent blogs here");
-//		blogService.getRecentBlogs();
-		return "index";
-	}
+    @RequestMapping
+    public String showIndexPage() {
+        // System.out.println("get recent blogs here");
+        // blogService.getRecentBlogs();
+        return "index";
+    }
 }

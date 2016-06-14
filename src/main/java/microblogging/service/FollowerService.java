@@ -4,5 +4,5 @@ import microblogging.model.Follower;
 
 public interface FollowerService {
 
-	boolean add (Follower f);
+    boolean add(Follower f);
 }

@@ -7,38 +7,38 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="FOLLOWERS")
+@Table(name = "FOLLOWERS")
 public class Follower {
 
-	@Id	
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	private Long user;
-		
-	private Long follower;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	public Long getId() {
-		return id;
-	}
+    private Long user;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    private Long follower;
 
-	public Long getUser() {
-		return user;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setUser(Long user) {
-		this.user = user;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public Long getFollower() {
-		return follower;
-	}
+    public Long getUser() {
+        return user;
+    }
 
-	public void setFollower(Long follower) {
-		this.follower = follower;
-	}
+    public void setUser(Long user) {
+        this.user = user;
+    }
+
+    public Long getFollower() {
+        return follower;
+    }
+
+    public void setFollower(Long follower) {
+        this.follower = follower;
+    }
 }

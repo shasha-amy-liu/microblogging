@@ -7,47 +7,46 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="BLOGTRACKING")
+@Table(name = "BLOGTRACKING")
 public class BlogTracking {
 
-	@Id	
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	private Long followerId;
-	private Long bloggerId;
-	private Long blogId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	
-	public Long getId() {
-		return id;
-	}
+    private Long followerId;
+    private Long bloggerId;
+    private Long blogId;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
-	public Long getBlogId() {
-		return blogId;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setBlogId(Long blogId) {
-		this.blogId = blogId;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public Long getFollowerId() {
-		return followerId;
-	}
+    public Long getBlogId() {
+        return blogId;
+    }
 
-	public void setFollowerId(Long followerId) {
-		this.followerId = followerId;
-	}
+    public void setBlogId(Long blogId) {
+        this.blogId = blogId;
+    }
 
-	public Long getBloggerId() {
-		return bloggerId;
-	}
+    public Long getFollowerId() {
+        return followerId;
+    }
 
-	public void setBloggerId(Long bloggerId) {
-		this.bloggerId = bloggerId;
-	}	
+    public void setFollowerId(Long followerId) {
+        this.followerId = followerId;
+    }
+
+    public Long getBloggerId() {
+        return bloggerId;
+    }
+
+    public void setBloggerId(Long bloggerId) {
+        this.bloggerId = bloggerId;
+    }
 }

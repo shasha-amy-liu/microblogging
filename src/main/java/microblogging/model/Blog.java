@@ -13,56 +13,55 @@ import javax.persistence.Table;
 @Table(name = "BLOGS")
 public class Blog {
 
-	@Id
-	@Column(name = "BLOG_ID")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	private java.sql.Timestamp timestamp;
+    @Id
+    @Column(name = "BLOG_ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@ManyToOne
-	@JoinColumn(name="USER_ID")
-	private User user;
-	
-	private String content;
+    private java.sql.Timestamp timestamp;
 
-	public Long getId() {
-		return id;
-	}
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private User user;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    private String content;
 
-	public java.sql.Timestamp getTimestamp() {
-		return timestamp;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setTimestamp(java.sql.Timestamp timestamp) {
-		this.timestamp = timestamp;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public User getUser() {
-		return user;
-	}
+    public java.sql.Timestamp getTimestamp() {
+        return timestamp;
+    }
 
-	public void setUser(User user) {		
-		this.user = user;
-		user.getBlogs().add(this);
-	}
+    public void setTimestamp(java.sql.Timestamp timestamp) {
+        this.timestamp = timestamp;
+    }
 
-	public String getContent() {
-		return content;
-	}
+    public User getUser() {
+        return user;
+    }
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+    public void setUser(User user) {
+        this.user = user;
+        user.getBlogs().add(this);
+    }
 
-	@Override
-	public String toString() {
-		return "Blog [id=" + id + ", timestamp=" + timestamp + ", user=" + user
-				+ ", content=" + content + "]";
-	}
-	
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    @Override
+    public String toString() {
+        return "Blog [id=" + id + ", timestamp=" + timestamp + ", user=" + user + ", content=" + content + "]";
+    }
+
 }
