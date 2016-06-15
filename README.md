@@ -29,5 +29,6 @@ User can post, follow other people and watch their posts.
      for linux `<tomcat.path>/home/doudou/java/apache-tomcat-6.0.35</tomcat.path>`
      for windows `<tomcat.path>D:\\java\\tomcat6\\</tomcat.path>`
 3. run maven build command 
-    `mvn install cargo:redeploy`
+   build without running test cases `mvn -Dmaven.test.skip=true install`
+   `mvn install cargo:redeploy`
 4. open browser and go to http://hostname:8080/blogging/

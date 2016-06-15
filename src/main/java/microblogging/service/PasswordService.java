@@ -4,7 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import org.apache.commons.codec.binary.Base64;
+import org.springframework.util.Base64Utils;
 
 public class PasswordService {
 
@@ -35,7 +35,7 @@ public class PasswordService {
         }
 
         byte raw[] = md.digest(); // step 4
-        return Base64.encodeBase64String(raw);
+        return Base64Utils.encodeToString(raw);
     }
 
     public boolean check(String raw, String stored) {
