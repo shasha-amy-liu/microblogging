@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class User {
 
     @Id
-    private ObjectId id;
+    private Long id;
     private String username;
     private String password;
 
@@ -35,11 +35,11 @@ public class User {
         this.password = password;
     }
 
-    public ObjectId getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

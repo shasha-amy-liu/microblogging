@@ -1,6 +1,5 @@
 package microblogging.model;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -8,17 +7,17 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class BlogTracking {
 
     @Id
-    private ObjectId id;
+    private Long id;
 
     private Long followerId;
     private Long bloggerId;
     private Long blogId;
 
-    public ObjectId getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
