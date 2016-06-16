@@ -6,9 +6,9 @@ import microblogging.model.BlogTracking;
 
 public interface BlogTrackingDAO {
 
-    boolean addTracking(Long followerId, Long bloggerId, Long blogId);
+    boolean addTracking(String followerId, String bloggerId, String blogId);
 
-    boolean removeTracking(Long followerId, Long bloggerId);
+    boolean removeTracking(String followerId, String bloggerId);
 
-    List<BlogTracking> getTrackingByUser(Long followerId);
+    List<BlogTracking> getTrackingByUser(String followerId);
 }

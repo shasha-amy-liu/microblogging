@@ -1,40 +1,33 @@
 package microblogging.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-@Document
 public class Follower {
 
-    @Id
-    private Long id;
+    private String id;
 
-    @DBRef
-    private Long user;
-    private Long follower;
+    private String user;
+    private String follower;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public Long getUser() {
+    public String getUser() {
         return user;
     }
 
-    public void setUser(Long user) {
+    public void setUser(String user) {
         this.user = user;
     }
 
-    public Long getFollower() {
+    public String getFollower() {
         return follower;
     }
 
-    public void setFollower(Long follower) {
+    public void setFollower(String follower) {
         this.follower = follower;
     }
 }

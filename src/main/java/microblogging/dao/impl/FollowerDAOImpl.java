@@ -44,10 +44,10 @@ public class FollowerDAOImpl implements FollowerDAO {
 
     @Transactional
     @Override
-    public List<Long> getAllFollower(Long userId) {
+    public List<String> getAllFollower(String userId) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List<Long> result = session.createQuery("select follower from  Follower where user = :id").setLong("id", userId)
+        List<String> result = session.createQuery("select follower from  Follower where user = :id").setString("id", userId)
                 .list();
         session.getTransaction().commit();
         session.close();
@@ -56,10 +56,10 @@ public class FollowerDAOImpl implements FollowerDAO {
 
     @Transactional
     @Override
-    public List<Long> getAllFollowing(Long userId) {
+    public List<String> getAllFollowing(String userId) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List<Long> result = session.createQuery("select user from  Follower where follower = :id").setLong("id", userId)
+        List<String> result = session.createQuery("select user from  Follower where follower = :id").setString("id", userId)
                 .list();
         session.getTransaction().commit();
         session.close();

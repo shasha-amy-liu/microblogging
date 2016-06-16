@@ -2,6 +2,12 @@ package microblogging.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+/**
+ * Replace web.xml
+ * 1. Set up default dispatacher servlet
+ * 2. set up spring mvc configuration
+ * 3. set up root configuration fro context
+ */
 public class MicroBloggingWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override

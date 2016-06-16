@@ -11,6 +11,6 @@ public interface BlogService {
 
     List<Blog> getAllBlogsByUser(User u);
 
-    Blog getBlogById(Long blogId);
+    Blog getBlogById(String blogId);
 
 }

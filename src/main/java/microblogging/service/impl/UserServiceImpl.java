@@ -84,8 +84,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public void publishBlog(User a, Blog blog) {
         // get all followers
-        List<Long> followersId = followerDAO.getAllFollower(a.getId());
-        for (Long id : followersId) {
+        List<String> followersId = followerDAO.getAllFollower(a.getId());
+        for (String id : followersId) {
             blogTrackingDAO.addTracking(id, a.getId(), blog.getId());
         }
     }
@@ -108,16 +108,16 @@ public class UserServiceImpl implements UserService {
     public Set<User> listAllUsersNotFollowedYet(String username) {
         User u = getUserByName(username);
         System.out.println("user id = " + u.getId());
-        List<Long> followed = followerDAO.getAllFollower(u.getId());
+        List<String> followed = followerDAO.getAllFollower(u.getId());
         System.out.println("followed = " + Arrays.toString(followed.toArray()));
-        List<Long> allIds = userDAO.getAllUserIds();
+        List<String> allIds = userDAO.getAllUserIds();
         System.out.println("all ids = " + Arrays.toString(allIds.toArray()));
         allIds.removeAll(followed);
         allIds.remove(u.getId());
 
         System.out.println(" not followed = " + Arrays.toString(allIds.toArray()));
         Set<User> result = new HashSet<User>();
-        for (Long id : allIds) {
+        for (String id : allIds) {
             result.add(userDAO.getUserById(id));
         }
         return result;
@@ -127,7 +127,7 @@ public class UserServiceImpl implements UserService {
     public List<Blog> getBlogTracking(String name) {
         User u = getUserByName(name);
 
-        Long followerId = u.getId();
+        String followerId = u.getId();
         List<BlogTracking> trackings = blogTrackingDAO.getTrackingByUser(followerId);
         List<Blog> result = new ArrayList<Blog>();
         for (BlogTracking track : trackings) {
@@ -140,12 +140,12 @@ public class UserServiceImpl implements UserService {
     public List<User> listAmFollowing(String username) {
         User u = getUserByName(username);
 
-        Long id = u.getId();
+        String id = u.getId();
 
-        List<Long> amFollowingIds = followerDAO.getAllFollowing(id);
+        List<String> amFollowingIds = followerDAO.getAllFollowing(id);
         List<User> users = new ArrayList<User>();
 
-        for (Long fid : amFollowingIds) {
+        for (String fid : amFollowingIds) {
             users.add(userDAO.getUserById(fid));
         }
 

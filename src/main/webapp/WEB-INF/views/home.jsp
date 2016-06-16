@@ -1,16 +1,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link type="text/css" href="./resources/jquery/css/ui-lightness/jquery-ui-1.8.17.custom.css" rel="stylesheet" />	
-<script type="text/javascript" src="./resources/jquery/js/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="./resources/jquery/js/jquery-ui-1.8.17.custom.min.js"></script>
+<link type="text/css" href="resources/jquery/css/ui-lightness/jquery-ui-1.8.17.custom.css" rel="stylesheet" />	
+<script type="text/javascript" src="resources/jquery/js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="resources/jquery/js/jquery-ui-1.8.17.custom.min.js"></script>
 
 <style type="text/css" title="currentStyle">
-	@import "./resources/DataTables-1.9.0/media/css/demo_page.css";
-	@import "./resources/DataTables-1.9.0/media/css/demo_table.css";
+	@import "resources/DataTables-1.9.0/media/css/demo_page.css";
+	@import "resources/DataTables-1.9.0/media/css/demo_table.css";
 </style>
-<script type="text/javascript" language="javascript" src="./resources/DataTables-1.9.0/media/js/jquery.dataTables.js"></script>
-<script type="text/javascript" language="javascript" src="./resources/jquery/periodicalupdater/jquery.periodicalupdater.js"></script>
+<script type="text/javascript" language="javascript" src="resources/DataTables-1.9.0/media/js/jquery.dataTables.js"></script>
+<script type="text/javascript" language="javascript" src="resources/jquery/periodicalupdater/jquery.periodicalupdater.js"></script>
 <style type="text/css">
 	.ui-resizable-se {
 		bottom: 17px;

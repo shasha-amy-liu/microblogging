@@ -10,7 +10,7 @@ public interface FollowerDAO {
 
     boolean remove(Follower f);
 
-    List<Long> getAllFollower(Long userId);
+    List<String> getAllFollower(String userId);
 
-    List<Long> getAllFollowing(Long userId);
+    List<String> getAllFollowing(String userId);
 }

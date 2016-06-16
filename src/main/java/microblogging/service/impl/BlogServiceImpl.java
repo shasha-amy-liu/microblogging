@@ -42,8 +42,8 @@ public class BlogServiceImpl implements BlogService {
 
         Blog blog = blogDAO.save(blogContent, username);
         // publish to blogTracking
-        List<Long> followers = followerDAO.getAllFollower(blogger.getId());
-        for (Long followerId : followers) {
+        List<String> followers = followerDAO.getAllFollower(blogger.getId());
+        for (String followerId : followers) {
             blogTrackingDAO.addTracking(followerId, blogger.getId(), blog.getId());
         }
         return blog;
@@ -55,7 +55,7 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public Blog getBlogById(Long blogId) {
+    public Blog getBlogById(String blogId) {
         return blogDAO.getBlogById(blogId);
     }
 }

@@ -1,47 +1,42 @@
 package microblogging.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-@Document
 public class BlogTracking {
 
-    @Id
-    private Long id;
+    private String id;
 
-    private Long followerId;
-    private Long bloggerId;
-    private Long blogId;
+    private String followerId;
+    private String bloggerId;
+    private String blogId;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public Long getBlogId() {
+    public String getBlogId() {
         return blogId;
     }
 
-    public void setBlogId(Long blogId) {
+    public void setBlogId(String blogId) {
         this.blogId = blogId;
     }
 
-    public Long getFollowerId() {
+    public String getFollowerId() {
         return followerId;
     }
 
-    public void setFollowerId(Long followerId) {
+    public void setFollowerId(String followerId) {
         this.followerId = followerId;
     }
 
-    public Long getBloggerId() {
+    public String getBloggerId() {
         return bloggerId;
     }
 
-    public void setBloggerId(Long bloggerId) {
+    public void setBloggerId(String bloggerId) {
         this.bloggerId = bloggerId;
     }
 }

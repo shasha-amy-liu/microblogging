@@ -113,7 +113,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Transactional
     @Override
-    public User getUserById(Long id) {
+    public User getUserById(String id) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         User result = (User) session.get(User.class, id);
@@ -126,11 +126,11 @@ public class UserDAOImpl implements UserDAO {
 
     @Transactional
     @Override
-    public List<Long> getAllUserIds() {
+    public List<String> getAllUserIds() {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        List<Long> result = session.createQuery("select user.id from User as user").list();
+        List<String> result = session.createQuery("select user.id from User as user").list();
 
         session.getTransaction().commit();
         session.close();

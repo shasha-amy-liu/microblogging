@@ -28,7 +28,7 @@ public class BlogTrackingDAOImpl implements BlogTrackingDAO {
 
     @Transactional
     @Override
-    public boolean addTracking(Long followerId, Long bloggerId, Long blogId) {
+    public boolean addTracking(String followerId, String bloggerId, String blogId) {
         System.out.println("blog tracking saved");
         Session session = sessionFactory.openSession();
         session.beginTransaction();
@@ -45,13 +45,13 @@ public class BlogTrackingDAOImpl implements BlogTrackingDAO {
 
     @Transactional
     @Override
-    public boolean removeTracking(Long followerId, Long bloggerId) {
+    public boolean removeTracking(String followerId, String bloggerId) {
         System.out.println("remove all blog tracking for one specific blogger and follower");
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
         List<BlogTracking> list = session.createQuery("from BlogTracking where followerId = :fid and bloggerId = :bid")
-                .setLong("fid", followerId).setLong("bid", bloggerId).list();
+                .setString("fid", followerId).setString("bid", bloggerId).list();
         for (BlogTracking t : list) {
             session.delete(t);
         }
@@ -62,12 +62,12 @@ public class BlogTrackingDAOImpl implements BlogTrackingDAO {
 
     @Transactional
     @Override
-    public List<BlogTracking> getTrackingByUser(Long followerId) {
+    public List<BlogTracking> getTrackingByUser(String followerId) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
         List<BlogTracking> list = session.createQuery("from BlogTracking where followerId = :fid")
-                .setLong("fid", followerId).list();
+                .setString("fid", followerId).list();
 
         session.getTransaction().commit();
         session.close();

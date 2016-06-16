@@ -1,6 +1,5 @@
 package microblogging.dao.impl;
 
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -56,7 +55,7 @@ public class BlogDAOImpl implements BlogDAO {
     public List<Blog> getAllBlogsByUser(User u) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List result = session.createQuery("from Blog where USER_ID = :id").setLong("id", u.getId()).list();
+        List result = session.createQuery("from Blog where USER_ID = :id").setString("id", u.getId()).list();
 
         session.getTransaction().commit();
         session.close();
@@ -66,7 +65,7 @@ public class BlogDAOImpl implements BlogDAO {
 
     @Transactional
     @Override
-    public Blog getBlogById(Long blogId) {
+    public Blog getBlogById(String blogId) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         Blog result = (Blog) session.get(Blog.class, blogId);

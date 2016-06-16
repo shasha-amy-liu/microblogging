@@ -5,7 +5,7 @@ import microblogging.model.User;
 public class UserVO {
 
     private String username;
-    private long id;
+    private String id;
 
     public UserVO(User u) {
         this.username = u.getUsername();
@@ -20,11 +20,11 @@ public class UserVO {
         this.username = username;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 }

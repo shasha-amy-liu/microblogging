@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -94,10 +95,7 @@ public class UserController {
     public @ResponseBody CommonRequestStatus addUser(HttpServletRequest request, HttpServletResponse response,
             @RequestParam(value = "username", required = true) String username,
             @RequestParam(value = "password", required = true) String password) {
-        User u = new User();
-        u.setUsername(username);
-        u.setPassword(password);
-
+        User u = new User(username, password);
         userService.save(u);
 
         CommonRequestStatus status = new CommonRequestStatus();
@@ -130,10 +128,6 @@ public class UserController {
     public @ResponseBody CommonRequestStatus checkLogin(HttpServletRequest request, HttpServletResponse response,
             @RequestParam(value = "username", required = true) String username,
             @RequestParam(value = "password", required = true) String password) {
-
-        User u = new User();
-        u.setUsername(username);
-        u.setPassword(password);
 
         User storedUser = userService.getUserByName(username);
 

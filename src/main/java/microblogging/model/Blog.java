@@ -2,26 +2,22 @@ package microblogging.model;
 
 import java.util.Date;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+@Document(collection="microblogging_blogs")
 public class Blog {
 
-    @Id
-    private Long id;
+    private String id;
     private Date creationDate;
 
-    @DBRef
     private User user;
     private String content;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
