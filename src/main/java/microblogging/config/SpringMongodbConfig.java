@@ -14,11 +14,14 @@ import com.mongodb.MongoClient;
 // must specify the places for repository
 @EnableMongoRepositories("microblogging.repository")
 public class SpringMongodbConfig extends AbstractMongoConfiguration {
+
+    // database name
     @Override
     protected String getDatabaseName() {
         return "testdb";
     }
 
+    // hostname
     @Override
     public Mongo mongo() throws Exception {
         return new MongoClient("localhost");
