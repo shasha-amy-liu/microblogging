@@ -1,28 +1,25 @@
 package microblogging.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name = "FOLLOWERS")
+@Document
 public class Follower {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private ObjectId id;
 
+    @DBRef
     private Long user;
-
     private Long follower;
 
-    public Long getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 

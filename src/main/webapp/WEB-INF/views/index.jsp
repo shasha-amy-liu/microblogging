@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link type="text/css" href="./resources/jquery/css/ui-lightness/jquery-ui-1.8.17.custom.css" rel="stylesheet" />	
-<script type="text/javascript" src="./resources/jquery/js/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="./resources/jquery/js/jquery-ui-1.8.17.custom.min.js"></script>
-		
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" href="resources/jquery/css/ui-lightness/jquery-ui-1.8.17.custom.css" rel="stylesheet" />	
+<script type="text/javascript" src="resources/jquery/js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="resources/jquery/js/jquery-ui-1.8.17.custom.min.js"></script>
+
 <style>
 	label, input { display:block; }
 	input.text { margin-bottom:12px; width:95%; padding: .4em; }
@@ -29,7 +29,7 @@
 		$.get(url,
 			function(data) {
 				if (data.status == 'true') {					
-					window.location.replace(pathname+ "home");					
+					window.location.replace(pathname+ "home");
 			}
 		});
 		
@@ -99,7 +99,7 @@
   							success: function(data){
   								if (data.status == 'true') {
   									close = true;
-  									updateTips('User created successfully, Please log in again!', tips);  									
+  									updateTips('User created successfully, Please log in again!', tips);
   								} else {
   									updateTips('Duplicate User name, Please try again!', tips);
   								}    							
@@ -167,7 +167,7 @@
   									window.location.replace(pathname+ "home");
   								} else {
   									updateTips('Wrong Username and/or password', loginTips);
-  								}   							
+  								}
   							}
 						});
 					}
@@ -178,14 +178,14 @@
 </script>
 </head>
 <body>
-	<h1 align="center">Blogging Demo</h1>
+	<h1 align="center">MicroBlogging</h1>
 	<div id='effect' style="width:400px">
 	<p class="loginValidateTips">All form fields are required.</p>
 	<form name="loginForm" id="login-form" action="#" method="post">
 		<label>Username</label><input type="text" id="login_username" name="username" class="text ui-widget-content ui-corner-all">
 		<label>Password</label><input type="password" id="login_password" name="password" class="text ui-widget-content ui-corner-all">
 		<input id='login-form-submit' type="button" value="Login"> <input id="login-form-reset" type="button" value="Cancel">
-		<input type="button" value='Create a new user' name='create-user' id='create-user' />		
+		<input type="button" value='Create a new user' name='create-user' id='create-user' />
 	</form>
 	</div>
 	

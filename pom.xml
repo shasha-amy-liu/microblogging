@@ -32,35 +32,16 @@
       <plugin>
         <artifactId>maven-war-plugin</artifactId>
         <version>2.6</version>
-      </plugin>
-      <!--
-      <plugin>
-        <groupId>org.codehaus.cargo</groupId>
-        <artifactId>cargo-maven2-plugin</artifactId>
-        <version>1.1.4</version>
         <configuration>
-          <container>
-            <containerId>tomcat6x</containerId>
-          </container>
-          <configuration>
-            <type>existing</type>
-            <home>${tomcat.path}</home>
-          </configuration>
-          <deployer>
-            <deployables>
-              <deployable>
-                <groupId>microblogging</groupId>
-                <artifactId>microblogging</artifactId>
-                <type>war</type>
-                <properties>
-                  <context>MicroBlogging</context>
-                </properties>
-              </deployable>
-            </deployables>
-          </deployer>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
         </configuration>
       </plugin>
-       -->
+      <!-- <plugin> <groupId>org.codehaus.cargo</groupId> <artifactId>cargo-maven2-plugin</artifactId> 
+        <version>1.1.4</version> <configuration> <container> <containerId>tomcat6x</containerId> 
+        </container> <configuration> <type>existing</type> <home>${tomcat.path}</home> 
+        </configuration> <deployer> <deployables> <deployable> <groupId>microblogging</groupId> 
+        <artifactId>microblogging</artifactId> <type>war</type> <properties> <context>MicroBlogging</context> 
+        </properties> </deployable> </deployables> </deployer> </configuration> </plugin> -->
     </plugins>
   </build>
 
@@ -95,6 +76,32 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-oxm</artifactId>
     </dependency>
+    <!-- http://mvnrepository.com/artifact/org.springframework.data/spring-data-commons -->
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-commons</artifactId>
+    </dependency>
+
+    <!-- http://mvnrepository.com/artifact/org.mongodb/mongo-java-driver -->
+    <dependency>
+      <groupId>org.mongodb</groupId>
+      <artifactId>mongo-java-driver</artifactId>
+    </dependency>
+
+    <!-- http://mvnrepository.com/artifact/org.springframework.data/spring-data-mongodb -->
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-mongodb</artifactId>
+    </dependency>
+
+
+    <!-- http://mvnrepository.com/artifact/org.springframework.data/spring-data-mongodb-parent -->
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-mongodb-parent</artifactId>
+      <version>1.9.1.RELEASE</version>
+      <type>pom</type>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -121,6 +128,10 @@
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
     </dependency>
   </dependencies>
 </project>

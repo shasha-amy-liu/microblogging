@@ -1,45 +1,37 @@
 package microblogging.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import java.util.Date;
 
-@Entity
-@Table(name = "BLOGS")
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class Blog {
 
     @Id
-    @Column(name = "BLOG_ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private ObjectId id;
+    private Date creationDate;
 
-    private java.sql.Timestamp timestamp;
-
-    @ManyToOne
-    @JoinColumn(name = "USER_ID")
+    @DBRef
     private User user;
-
     private String content;
 
-    public Long getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
-    public java.sql.Timestamp getTimestamp() {
-        return timestamp;
+    public Date getCreationDate() {
+        return creationDate;
     }
 
-    public void setTimestamp(java.sql.Timestamp timestamp) {
-        this.timestamp = timestamp;
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
 
     public User getUser() {
@@ -58,10 +50,4 @@ public class Blog {
     public void setContent(String content) {
         this.content = content;
     }
-
-    @Override
-    public String toString() {
-        return "Blog [id=" + id + ", timestamp=" + timestamp + ", user=" + user + ", content=" + content + "]";
-    }
-
 }

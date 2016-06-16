@@ -2,23 +2,14 @@ package microblogging.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping({ "/", "/index" })
 public class IndexController {
 
-    // public static final int DEFAULT_SPITTLES_PER_PAGE = 25;
-    //
-    // private BlogService blogService;
-    //
-    // @Inject
-    // public IndexController (BlogService blogService) {
-    // this.blogService = blogService;
-    // }
-
-    @RequestMapping
+    @RequestMapping(value = {"", "/", "/index"}, method = RequestMethod.GET)
     public String showIndexPage() {
-        // System.out.println("get recent blogs here");
+        System.out.println("get recent blogs here");
         // blogService.getRecentBlogs();
         return "index";
     }

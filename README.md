@@ -5,15 +5,23 @@ User can post, follow other people and watch their posts.
 
 ## Software stack
 * Java 8
-* Spring 4.2
-* Hibernate 4
+* Spring 4.2.5
+* Hibernate 4.3
 * Maven 3
-* MySQL 5.5
 * Tomcat 8
 * MongoDB 3.2
 
-## Initialization
-1. install java 8, maven 3, mysql 5.5 and tomcat 8
+## Development Environment
+1. Install java 8, maven 3 and tomcat 8
+2. Install mongodb 3.2 in mac os
+   add /opt/local/bin to your path in order to use macports
+   `port install mongodb`
+   create db folder if not existing
+   `sudo mkdir -p /data/db/`
+   this command will allow mongod to run as current user
+   sudo chown `id -u` /data/db
+   mongod
+   waiting for connections on port 27017
 
 ## Build
 1. settings for mysql
