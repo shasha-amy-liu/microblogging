@@ -15,19 +15,19 @@ User can post, follow other people and watch their posts.
 1. Install java 8, maven 3 and tomcat 8
 2. Install mongodb 3.2 in ubuntu 16.04
    become root
-   `su -`
+   `su -`<br />
    install mongodb binary and create user named mongodb
-   `apt-get install mongodb`
-   `mkdir -p /data/db/`
-   `chown mongodb /data/db`
+   `apt-get install mongodb`<br />
+   `mkdir -p /data/db/`<br />
+   `chown mongodb /data/db`<br />
    start up mongodb
-   `mongod`
+   `mongod`<br />
    start up mongodb as a service
-   `servcie mongodb start`
+   `servcie mongodb start`<br />
    connect to mongodb in localhost
-   `mongo`
+   `mongo`<br />
    within mongodb shell, show all databases
-   `show databases`
+   `show databases`<br />
 3. Install mongodb 3.2 in mac os
    add /opt/local/bin to your path in order to use macports
    `port install mongodb`
@@ -43,15 +43,9 @@ User can post, follow other people and watch their posts.
    * create database demo 
    * create user 'demo' identified by 'demo'
    * assign all rights to the user 'demo'
-     `grant all on demo.* to 'demo'@'%' identified by 'demo';`
+     `grant all on demo.* to 'demo'@'%' identified by 'demo';` <br />
      `flush privileges`
    * restart mysql at localhost:3306
 2. settings for tomcat
    * start tomcat in 8080
-   * change installation address of tomcat folder in pom.xml, e.g.:
-     for linux `<tomcat.path>/home/doudou/java/apache-tomcat-6.0.35</tomcat.path>`
-     for windows `<tomcat.path>D:\\java\\tomcat6\\</tomcat.path>`
-3. run maven build command 
-   build without running test cases `mvn -Dmaven.test.skip=true install`
-   `mvn install cargo:redeploy`
-4. open browser and go to http://hostname:8080/blogging/
+3. TODO: fix maven tomcat plugin
