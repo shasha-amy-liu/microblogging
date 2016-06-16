@@ -58,6 +58,14 @@
     </dependencies>
   </dependencyManagement>
 
+  <!-- follow http://docs.spring.io/spring-data/mongodb/docs/current/reference/html/#mongo.core and remove the spring-data-parent pom -->
+  <repositories>
+    <repository>
+      <id>spring-milestone</id>
+      <name>Spring Maven MILESTONE Repository</name>
+      <url>http://repo.spring.io/libs-milestone</url>
+    </repository>
+  </repositories>
   <dependencies>
     <dependency>
       <groupId>org.springframework</groupId>
@@ -94,14 +102,6 @@
       <artifactId>spring-data-mongodb</artifactId>
     </dependency>
 
-
-    <!-- http://mvnrepository.com/artifact/org.springframework.data/spring-data-mongodb-parent -->
-    <dependency>
-      <groupId>org.springframework.data</groupId>
-      <artifactId>spring-data-mongodb-parent</artifactId>
-      <version>1.9.1.RELEASE</version>
-      <type>pom</type>
-    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
