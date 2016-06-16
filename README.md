@@ -13,7 +13,22 @@ User can post, follow other people and watch their posts.
 
 ## Development Environment
 1. Install java 8, maven 3 and tomcat 8
-2. Install mongodb 3.2 in mac os
+2. Install mongodb 3.2 in ubuntu 16.04
+   become root
+   `su -`
+   install mongodb binary and create user named mongodb
+   `apt-get install mongodb`
+   `mkdir -p /data/db/`
+   `chown mongodb /data/db`
+   start up mongodb
+   `mongod`
+   start up mongodb as a service
+   `servcie mongodb start`
+   connect to mongodb in localhost
+   `mongo`
+   within mongodb shell, show all databases
+   `show databases`
+3. Install mongodb 3.2 in mac os
    add /opt/local/bin to your path in order to use macports
    `port install mongodb`
    create db folder if not existing
