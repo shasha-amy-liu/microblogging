@@ -1,12 +1,11 @@
 # Microblogging
-A very small microblogging site using maven + mysql + hibernate + spring + spring mvc + jquery.
+A microblogging site uses Java, maven, mongodb, spring, jquery and tomcat.
 
 User can post, follow other people and watch their posts.
 
 ## Software stack
 * Java 8
 * Spring 4.2.5
-* Hibernate 4.3
 * Maven 3
 * Tomcat 8
 * MongoDB 3.2
@@ -15,7 +14,7 @@ User can post, follow other people and watch their posts.
 1. Install java 8, maven 3 and tomcat 8
 2. Install mongodb 3.2 in ubuntu 16.04
    become root
-   `su -`<br />
+   `su -`
    install mongodb binary and create user named mongodb
    `apt-get install mongodb`
    `mkdir -p /data/db/`
