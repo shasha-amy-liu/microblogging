@@ -38,13 +38,15 @@ User can post, follow other people and watch their posts.
    waiting for connections on port 27017
 
 ## Build
-1. settings for mysql
+1. install without testing
+   `mvn clean install -Dmaven.test.skip=true`
+2. settings for mysql
    * create database demo 
    * create user 'demo' identified by 'demo'
    * assign all rights to the user 'demo'
      `grant all on demo.* to 'demo'@'%' identified by 'demo';`
      `flush privileges`
    * restart mysql at localhost:3306
-2. settings for tomcat
+3. settings for tomcat
    * start tomcat in 8080
-3. TODO: fix maven tomcat plugin
+4. TODO: fix maven tomcat plugin
