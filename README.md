@@ -17,17 +17,17 @@ User can post, follow other people and watch their posts.
    become root
    `su -`<br />
    install mongodb binary and create user named mongodb
-   `apt-get install mongodb`<br />
-   `mkdir -p /data/db/`<br />
-   `chown mongodb /data/db`<br />
+   `apt-get install mongodb`
+   `mkdir -p /data/db/`
+   `chown mongodb /data/db`
    start up mongodb
-   `mongod`<br />
+   `mongod`
    start up mongodb as a service
-   `servcie mongodb start`<br />
+   `servcie mongodb start`
    connect to mongodb in localhost
-   `mongo`<br />
+   `mongo`
    within mongodb shell, show all databases
-   `show databases`<br />
+   `show databases`
 3. Install mongodb 3.2 in mac os
    add /opt/local/bin to your path in order to use macports
    `port install mongodb`
@@ -43,7 +43,7 @@ User can post, follow other people and watch their posts.
    * create database demo 
    * create user 'demo' identified by 'demo'
    * assign all rights to the user 'demo'
-     `grant all on demo.* to 'demo'@'%' identified by 'demo';` <br />
+     `grant all on demo.* to 'demo'@'%' identified by 'demo';`
      `flush privileges`
    * restart mysql at localhost:3306
 2. settings for tomcat
