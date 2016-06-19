@@ -50,3 +50,12 @@ User can post, follow other people and watch their posts.
 3. settings for tomcat
    * start tomcat in 8080
 4. TODO: fix maven tomcat plugin
+
+## Spring MVC
+Repository, Service and Controller are the special Components:
+1. Component – Indicates a auto scan component.
+2. Repository – Indicates DAO component in the persistence layer.
+3 Service – Indicates a Service component in the business layer.
+4. Controller – Indicates a controller component in the presentation layer.
+
+Refer to http://stackoverflow.com/questions/6827752/whats-the-difference-between-component-repository-service-annotations-in for their difference.

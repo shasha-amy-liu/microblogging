@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import microblogging.dao.UserDAO;
 import microblogging.model.Blog;
 import microblogging.model.User;
-import microblogging.service.PasswordService;
+import microblogging.util.PasswordUtil;
 
 @Repository("userDAO")
 @Transactional
@@ -32,7 +32,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public boolean update(User u) {
         String plainPassword = u.getPassword();
-        String encrypted = PasswordService.getInstance().encode(plainPassword);
+        String encrypted = PasswordUtil.getInstance().encode(plainPassword);
         u.setPassword(encrypted);
         System.out.println("user updated");
         Session session = sessionFactory.openSession();
@@ -47,7 +47,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public boolean save(User u) {
         String plainPassword = u.getPassword();
-        String encrypted = PasswordService.getInstance().encode(plainPassword);
+        String encrypted = PasswordUtil.getInstance().encode(plainPassword);
         u.setPassword(encrypted);
         System.out.println("user saved");
         Session session = sessionFactory.openSession();

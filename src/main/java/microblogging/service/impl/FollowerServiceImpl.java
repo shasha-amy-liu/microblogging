@@ -3,7 +3,7 @@ package microblogging.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import microblogging.dao.FollowerDAO;
-import microblogging.model.Follower;
+import microblogging.model.Follow;
 import microblogging.service.FollowerService;
 
 public class FollowerServiceImpl implements FollowerService {
@@ -12,7 +12,7 @@ public class FollowerServiceImpl implements FollowerService {
     private FollowerDAO followerDAO;
 
     @Override
-    public boolean add(Follower f) {
+    public boolean add(Follow f) {
         return followerDAO.add(f);
     }
 

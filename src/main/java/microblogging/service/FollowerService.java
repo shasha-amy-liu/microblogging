@@ -1,8 +1,8 @@
 package microblogging.service;
 
-import microblogging.model.Follower;
+import microblogging.model.Follow;
 
 public interface FollowerService {
 
-    boolean add(Follower f);
+    boolean add(Follow f);
 }

@@ -9,7 +9,6 @@ public class Blog {
 
     private String id;
     private Date creationDate;
-
     private User user;
     private String content;
 

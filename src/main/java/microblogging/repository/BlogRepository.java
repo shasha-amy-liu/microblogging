@@ -1,16 +1,13 @@
 package microblogging.repository;
 
-import java.util.List;
-
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import microblogging.model.User;
 
 /**
- * Extend both the standard
+ * Extend the standard interface
  */
 @Repository
-public interface UserRepository extends MongoRepository<User, String> {
-    List<User> findByUsername(String username);
+public interface BlogRepository extends MongoRepository<User, String> {
 }

@@ -2,13 +2,13 @@ package microblogging.dao;
 
 import java.util.List;
 
-import microblogging.model.Follower;
+import microblogging.model.Follow;
 
 public interface FollowerDAO {
 
-    boolean add(Follower f);
+    boolean add(Follow f);
 
-    boolean remove(Follower f);
+    boolean remove(Follow f);
 
     List<String> getAllFollower(String userId);
 

@@ -12,11 +12,11 @@ public interface UserService {
 
     void followUser(User a, User b);
 
-    boolean update(User u);
+    User update(User u);
 
-    boolean save(User u);
+    User save(User u);
 
-    User getUserByName(String username);
+    List<User> findUserByUsername(String username);
 
     Set<User> listAllUsersNotFollowedYet(String username);
 

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import microblogging.dao.FollowerDAO;
-import microblogging.model.Follower;
+import microblogging.model.Follow;
 
 @Repository("followerDAO")
 @Transactional
@@ -20,7 +20,7 @@ public class FollowerDAOImpl implements FollowerDAO {
 
     @Transactional
     @Override
-    public boolean add(Follower f) {
+    public boolean add(Follow f) {
         System.out.println("follower saved");
         Session session = sessionFactory.openSession();
         session.beginTransaction();
@@ -32,7 +32,7 @@ public class FollowerDAOImpl implements FollowerDAO {
 
     @Transactional
     @Override
-    public boolean remove(Follower f) {
+    public boolean remove(Follow f) {
         System.out.println("follower removed");
         Session session = sessionFactory.openSession();
         session.beginTransaction();

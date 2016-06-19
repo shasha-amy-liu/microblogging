@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import microblogging.dao.FollowerDAO;
 import microblogging.dao.UserDAO;
-import microblogging.model.Follower;
+import microblogging.model.Follow;
 import microblogging.model.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -44,17 +44,17 @@ public class FollowerDAOTest {
         u2.setPassword("pass3");
         userDAO.save(u2);
 
-        Follower f = new Follower();
+        Follow f = new Follow();
         f.setUser(u0.getId());
         f.setFollower(u.getId());
         followerDAO.add(f);
 
-        f = new Follower();
+        f = new Follow();
         f.setUser(u0.getId());
         f.setFollower(u2.getId());
         followerDAO.add(f);
 
-        f = new Follower();
+        f = new Follow();
         f.setUser(u.getId());
         f.setFollower(u0.getId());
         followerDAO.add(f);

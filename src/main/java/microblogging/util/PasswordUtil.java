@@ -1,4 +1,4 @@
-package microblogging.service;
+package microblogging.util;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -6,16 +6,22 @@ import java.security.NoSuchAlgorithmException;
 
 import org.springframework.util.Base64Utils;
 
-public class PasswordService {
+public class PasswordUtil {
 
-    private PasswordService() {
+    private PasswordUtil() {
     }
 
-    private static PasswordService instance;
+    private volatile static PasswordUtil instance;
 
-    public synchronized static PasswordService getInstance() {
+    /**
+     * Implement a thread-safe singleton, lazy-loading and double checked locking
+     * @return
+     */
+    public static PasswordUtil getInstance() {
         if (instance == null) {
-            instance = new PasswordService();
+            synchronized (PasswordUtil.class) {
+                instance = new PasswordUtil();
+            }
         }
 
         return instance;

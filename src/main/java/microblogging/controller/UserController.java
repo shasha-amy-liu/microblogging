@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import microblogging.model.User;
-import microblogging.service.PasswordService;
 import microblogging.service.UserService;
+import microblogging.util.PasswordUtil;
 import microblogging.vo.CommonRequestStatus;
 import microblogging.vo.UserVO;
 
@@ -132,7 +132,7 @@ public class UserController {
         User storedUser = userService.getUserByName(username);
 
         CommonRequestStatus status = new CommonRequestStatus();
-        if (PasswordService.getInstance().check(password, storedUser.getPassword())) {
+        if (PasswordUtil.getInstance().check(password, storedUser.getPassword())) {
             status.setStatus("true");
             if (request.getSession().getAttribute("user") == null) {
                 request.getSession().setAttribute("user", storedUser);
