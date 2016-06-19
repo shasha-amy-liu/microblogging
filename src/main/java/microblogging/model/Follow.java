@@ -8,8 +8,8 @@ public class Follow {
 
     @Id
     private String id;
-    private String blogger;
-    private String follower;
+    private String bloggerId;
+    private String followerId;
 
     public String getId() {
         return id;
@@ -19,19 +19,19 @@ public class Follow {
         this.id = id;
     }
 
-    public String getBlogger() {
-        return blogger;
+    public String getBloggerId() {
+        return bloggerId;
     }
 
-    public void setBlogger(String blogger) {
-        this.blogger = blogger;
+    public void setBloggerId(String bloggerId) {
+        this.bloggerId = bloggerId;
     }
 
-    public String getFollower() {
-        return follower;
+    public String getFollowerId() {
+        return followerId;
     }
 
-    public void setFollower(String follower) {
-        this.follower = follower;
+    public void setFollowerId(String followerId) {
+        this.followerId = followerId;
     }
 }

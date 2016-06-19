@@ -1,22 +1,12 @@
 package microblogging.service.impl;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import microblogging.dao.BlogDAO;
-import microblogging.dao.BlogTrackingDAO;
-import microblogging.dao.FollowerDAO;
-import microblogging.dao.UserDAO;
 import microblogging.model.Blog;
-import microblogging.model.BlogTracking;
-import microblogging.model.Follow;
 import microblogging.model.User;
 import microblogging.repository.BlogRepository;
 import microblogging.repository.BlogTrackingRepository;
