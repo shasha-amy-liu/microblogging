@@ -54,8 +54,11 @@ public class FollowRepositoryTest {
         f.setFollowerId(u0.getId());
         followRepo.save(f);
 
-        List<Follow> result = followRepo.findByBloggerId(u0.getId());
-        Assert.assertEquals(2, result.size());
+        List<Follow> followers = followRepo.findByBloggerId(u0.getId());
+        Assert.assertEquals(2, followers.size());
+
+        List<Follow> followings = followRepo.findByFollowerId(u2.getId());
+        Assert.assertEquals(1, followings.size());
     }
 
     @AfterClass

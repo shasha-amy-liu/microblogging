@@ -10,4 +10,6 @@ import microblogging.model.Follow;
 @Repository
 public interface FollowRepository extends MongoRepository<Follow, String>{
     List<Follow> findByBloggerId(String bloggerId);
+
+    List<Follow> findByFollowerId(String followerId);
 }
