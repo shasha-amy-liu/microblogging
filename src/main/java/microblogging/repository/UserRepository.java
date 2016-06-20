@@ -13,4 +13,8 @@ import microblogging.model.User;
 @Repository
 public interface UserRepository extends MongoRepository<User, String> {
     List<User> findByUsername(String username);
+
+    User findOneByUsername(String username);
+
+    User findOneById(String userId);
 }

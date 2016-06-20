@@ -1,12 +1,25 @@
 package microblogging.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceConstructor;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection="microblogging_blogTrackings")
 public class BlogTracking {
 
+    @Id
     private String id;
 
     private String followerId;
     private String bloggerId;
     private String blogId;
+
+    @PersistenceConstructor
+    public BlogTracking(String followerId, String bloggerId, String blogId) {
+        this.followerId = followerId;
+        this.bloggerId = bloggerId;
+        this.blogId = blogId;
+    }
 
     public String getId() {
         return id;

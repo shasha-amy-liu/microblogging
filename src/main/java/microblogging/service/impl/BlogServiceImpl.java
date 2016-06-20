@@ -5,57 +5,44 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import microblogging.dao.BlogDAO;
-import microblogging.dao.BlogTrackingDAO;
-import microblogging.dao.FollowerDAO;
-import microblogging.dao.UserDAO;
 import microblogging.model.Blog;
+import microblogging.model.BlogTracking;
+import microblogging.model.Follow;
 import microblogging.model.User;
+import microblogging.repository.BlogRepository;
+import microblogging.repository.BlogTrackingRepository;
+import microblogging.repository.FollowRepository;
+import microblogging.repository.UserRepository;
 import microblogging.service.BlogService;
 
 @Component("blogService")
 public class BlogServiceImpl implements BlogService {
 
     @Autowired
-    private UserDAO userDAO;
+    private UserRepository userRepo;
 
     @Autowired
-    private BlogTrackingDAO blogTrackingDAO;
+    private BlogTrackingRepository blogTrackingRepo;
 
     @Autowired
-    private FollowerDAO followerDAO;
+    private FollowRepository followRepo;
 
     @Autowired
-    private BlogDAO blogDAO;
-
-    public BlogDAO getBlogDAO() {
-        return blogDAO;
-    }
-
-    public void setBlogDAO(BlogDAO blogDAO) {
-        this.blogDAO = blogDAO;
-    }
+    private BlogRepository blogRepo;
 
     @Override
     public Blog save(String blogContent, String username) {
-        User blogger = userDAO.getUserByName(username);
+        User blogger = userRepo.findOneByUsername(username);
 
-        Blog blog = blogDAO.save(blogContent, username);
-        // publish to blogTracking
-        List<String> followers = followerDAO.getAllFollower(blogger.getId());
-        for (String followerId : followers) {
-            blogTrackingDAO.addTracking(followerId, blogger.getId(), blog.getId());
+        Blog blog = new Blog(blogger.getId(), blogContent);
+        blogRepo.save(blog);
+
+        // Publish to blogTracking
+        List<Follow> follows = followRepo.findByBloggerId(blogger.getId());
+        for (Follow f : follows) {
+            BlogTracking bt = new BlogTracking(f.getFollowerId(), f.getBloggerId(), blog.getId());
+            blogTrackingRepo.save(bt);
         }
         return blog;
-    }
-
-    @Override
-    public List<Blog> getAllBlogsByUser(User u) {
-        return blogDAO.getAllBlogsByUser(u);
-    }
-
-    @Override
-    public Blog getBlogById(String blogId) {
-        return blogDAO.getBlogById(blogId);
     }
 }

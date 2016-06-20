@@ -15,6 +15,7 @@ import microblogging.model.Blog;
 import microblogging.model.User;
 import microblogging.service.BlogService;
 import microblogging.service.UserService;
+import microblogging.util.MicrobloggingUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "/application-context.xml" })
@@ -23,44 +24,27 @@ public class UserServiceTest {
     @Autowired
     private UserService userService;
 
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
-
     @Autowired
     private BlogService blogService;
 
-    public void setBlogService(BlogService blogService) {
-        this.blogService = blogService;
-    }
-
     @Test
-    public void testAddAndFollower() {
-        User u1 = new User();
-        u1.setUsername("test" + UUID.randomUUID());
-        u1.setPassword("pass2");
+    public void testAddAndFollow() {
+        User u1 = MicrobloggingUtil.generateRandomUser();
         userService.save(u1);
 
-        User u = new User();
-        u.setUsername("test" + UUID.randomUUID());
-        u.setPassword("pass3");
-        userService.save(u);
-
-        User u2 = new User();
-        u2.setUsername("test" + UUID.randomUUID());
-        u2.setPassword("pass3");
+        User u2 = MicrobloggingUtil.generateRandomUser();
         userService.save(u2);
 
+        User u3 = MicrobloggingUtil.generateRandomUser();
+        userService.save(u3);
+
         userService.followUser(u1, u2);
-        userService.followUser(u1, u);
+        userService.followUser(u1, u3);
     }
 
     @Test
     public void testPublish() {
-
-        User u = new User();
-        u.setUsername("test" + UUID.randomUUID());
-        u.setPassword("pass2");
+        User u = MicrobloggingUtil.generateRandomUser();
         userService.save(u);
 
         String blogContent = "some random content";
@@ -70,13 +54,13 @@ public class UserServiceTest {
 
     @Test
     public void testAddFollowerAndPublish() {
-        User u1 = new User();
+        User u1 = MicrobloggingUtil.generateRandomUser();
         u1.setUsername("test" + UUID.randomUUID());
         u1.setPassword("pass2");
         userService.save(u1);
         System.out.println("u1 id = " + u1.getId());
 
-        User u = new User();
+        User u = MicrobloggingUtil.generateRandomUser();
         u.setUsername("test" + UUID.randomUUID());
         u.setPassword("pass3");
         userService.save(u);
@@ -97,33 +81,23 @@ public class UserServiceTest {
 
     @Test
     public void testlistAllUsersNotFollowedYet() {
-        User u1 = new User();
-        String u1Name = "test" + UUID.randomUUID();
-        u1.setUsername(u1Name);
-        u1.setPassword("pass2");
-        Assert.assertTrue(userService.save(u1));
+        User u1 = MicrobloggingUtil.generateRandomUser();
+        String u1Name = u1.getUsername();
+        Assert.assertNotNull(userService.save(u1));
         System.out.println("u1 id = " + u1.getId());
 
-        User u2 = new User();
-        u2.setUsername("test" + UUID.randomUUID());
-        u2.setPassword("pass3");
+        User u2 = MicrobloggingUtil.generateRandomUser();
         userService.save(u2);
         System.out.println("u2 id = " + u2.getId());
 
-        User u3 = new User();
-        u3.setUsername("test" + UUID.randomUUID());
-        u3.setPassword("pass3");
+        User u3 = MicrobloggingUtil.generateRandomUser();
         userService.save(u3);
         System.out.println("u3 id = " + u3.getId());
 
-        User u = new User();
-        u.setUsername("test" + UUID.randomUUID());
-        u.setPassword("pass3");
+        User u = MicrobloggingUtil.generateRandomUser();
         userService.save(u);
 
-        u = new User();
-        u.setUsername("test" + UUID.randomUUID());
-        u.setPassword("pass3");
+        u = MicrobloggingUtil.generateRandomUser();
         userService.save(u);
 
         userService.followUser(u2, u1);
@@ -137,14 +111,12 @@ public class UserServiceTest {
 
     @Test
     public void testAddTrackingBlog() {
-        User u1 = new User();
-        String u1Name = "test" + UUID.randomUUID();
-        u1.setUsername(u1Name);
-        u1.setPassword("pass2");
-        Assert.assertTrue(userService.save(u1));
+        User u1 = MicrobloggingUtil.generateRandomUser();
+        String u1Name = u1.getUsername();
+        Assert.assertNotNull(userService.save(u1));
         System.out.println("u1 id = " + u1.getId());
 
-        User u2 = new User();
+        User u2 = MicrobloggingUtil.generateRandomUser();
         u2.setUsername("test" + UUID.randomUUID());
         u2.setPassword("pass3");
         userService.save(u2);
