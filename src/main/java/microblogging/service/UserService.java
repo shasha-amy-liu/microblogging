@@ -3,6 +3,8 @@ package microblogging.service;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.stereotype.Service;
+
 import microblogging.model.Blog;
 import microblogging.model.User;
 

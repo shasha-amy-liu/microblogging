@@ -1,7 +1,6 @@
 package microblogging.service;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -10,33 +9,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import microblogging.config.RootConfig;
+import microblogging.config.SpringMongodbConfig;
 import microblogging.model.Blog;
 import microblogging.model.User;
+import microblogging.util.MicrobloggingUtil;
 
+// Must specify all the configuration classes that are used in the test cases
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({ "/application-context.xml" })
-
+@ContextConfiguration(classes = {SpringMongodbConfig.class, RootConfig.class})
 public class BlogServiceTest {
 
     @Autowired
     private UserService userService;
 
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
-
     @Autowired
     private BlogService blogService;
 
-    public void setBlogService(BlogService blogService) {
-        this.blogService = blogService;
-    }
-
     @Test
     public void testSave() {
-        User u = new User();
-        u.setUsername("test" + UUID.randomUUID());
-        u.setPassword("pass");
+        User u = MicrobloggingUtil.generateRandomUser();
         userService.save(u);
 
         String blogContent = "some random content";
@@ -49,9 +41,7 @@ public class BlogServiceTest {
 
     @Test
     public void testGetAllBlogs() {
-        User u = new User();
-        u.setUsername("test" + UUID.randomUUID());
-        u.setPassword("pass");
+        User u = MicrobloggingUtil.generateRandomUser();
         userService.save(u);
 
         String blogContent = "some random content";
@@ -61,7 +51,7 @@ public class BlogServiceTest {
         String blogContent2 = "some random content 2";
         Assert.assertNotNull(blogService.save(blogContent2, u.getUsername()));
 
-        List<Blog> result = blogService.getAllBlogsByUser(u);
+        List<Blog> result = blogService.findByUserId(u.getId());
         Assert.assertEquals(2, result.size());
         for (Blog blog : result) {
             System.out.println(blog);

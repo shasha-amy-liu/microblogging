@@ -3,7 +3,7 @@ package microblogging.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import microblogging.model.Blog;
 import microblogging.model.BlogTracking;
@@ -15,7 +15,8 @@ import microblogging.repository.FollowRepository;
 import microblogging.repository.UserRepository;
 import microblogging.service.BlogService;
 
-@Component("blogService")
+// service annotation is applied to class implementation, not the interface
+@Service("blogService")
 public class BlogServiceImpl implements BlogService {
 
     @Autowired
@@ -44,5 +45,10 @@ public class BlogServiceImpl implements BlogService {
             blogTrackingRepo.save(bt);
         }
         return blog;
+    }
+
+    @Override
+    public List<Blog> findByUserId(String userId) {
+        return blogRepo.findByUserId(userId);
     }
 }

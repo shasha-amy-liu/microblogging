@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import microblogging.config.RootConfig;
+import microblogging.config.SpringMongodbConfig;
 import microblogging.model.Blog;
 import microblogging.model.User;
 import microblogging.service.BlogService;
@@ -18,14 +20,14 @@ import microblogging.service.UserService;
 import microblogging.util.MicrobloggingUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({ "/application-context.xml" })
+@ContextConfiguration(classes = {SpringMongodbConfig.class, RootConfig.class})
 public class UserServiceTest {
 
     @Autowired
-    private UserService userService;
+    UserService userService;
 
     @Autowired
-    private BlogService blogService;
+    BlogService blogService;
 
     @Test
     public void testAddAndFollow() {
