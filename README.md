@@ -40,6 +40,7 @@ User can post, follow other people and watch their posts.
 ## Build
 1. install without testing
    `mvn clean install -Dmaven.test.skip=true`
+   `mvn clean install`
 2. settings for mysql
    * create database demo 
    * create user 'demo' identified by 'demo'
@@ -47,15 +48,19 @@ User can post, follow other people and watch their posts.
      `grant all on demo.* to 'demo'@'%' identified by 'demo';`
      `flush privileges`
    * restart mysql at localhost:3306
-3. settings for tomcat
-   * start tomcat in 8080
-4. TODO: fix maven tomcat plugin
+3. user settings for tomcat
+   add a new user to tomcat-users.xml
+   `<user username="tomcatscript" password="tomcatscript" roles="manager-script, manager-jmx"/>`
+   start tomcat and run on port 8080
+4. use maven tomcat plugin
+   deploy the war file and deploy to tomcat
+   `mvn clean install tomcat7:redeploy`
 
 ## Spring MVC
 Repository, Service and Controller are the special Components:
 1. Component – Indicates a auto scan component.
 2. Repository – Indicates DAO component in the persistence layer.
-3 Service – Indicates a Service component in the business layer.
+3  Service – Indicates a Service component in the business layer.
 4. Controller – Indicates a controller component in the presentation layer.
 
 [The difference among component, service, service](http://stackoverflow.com/questions/6827752/whats-the-difference-between-component-repository-service-annotations-in)
