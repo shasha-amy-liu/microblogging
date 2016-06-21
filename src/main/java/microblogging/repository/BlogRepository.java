@@ -14,4 +14,6 @@ import microblogging.model.Blog;
 public interface BlogRepository extends MongoRepository<Blog, String> {
 
     List<Blog> findByUserId(String userId);
+
+    Blog findById(String id);
 }

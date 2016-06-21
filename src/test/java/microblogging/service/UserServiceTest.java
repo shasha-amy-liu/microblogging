@@ -114,13 +114,10 @@ public class UserServiceTest {
     @Test
     public void testAddTrackingBlog() {
         User u1 = MicrobloggingUtil.generateRandomUser();
-        String u1Name = u1.getUsername();
         Assert.assertNotNull(userService.save(u1));
         System.out.println("u1 id = " + u1.getId());
 
         User u2 = MicrobloggingUtil.generateRandomUser();
-        u2.setUsername("test" + UUID.randomUUID());
-        u2.setPassword("pass3");
         userService.save(u2);
 
         // u2 publish blogs
@@ -136,16 +133,16 @@ public class UserServiceTest {
         // u1 follows u2
         userService.followUser(u1, u2);
 
-        // u1 should have a list of blogs published by u2
-        List<Blog> tracking = userService.getBlogTracking(u1Name);
-        System.out.println(tracking.size());
+        // Now u1 should have a list of blogs published by u2
+        List<Blog> tracking = blogService.findBlogTrackingsByBloggerIdAndFollowerId(u2.getId(), u1.getId());
+        int oldCount = tracking.size();
 
         // u2 continue to publish blog
         String blogContent3 = "some random content 3";
         Assert.assertNotNull(blogService.save(blogContent3, u2.getUsername()));
 
         // should be old size +1
-        tracking = userService.getBlogTracking(u1Name);
-        System.out.println(tracking.size());
+        tracking = blogService.findBlogTrackingsByBloggerIdAndFollowerId(u2.getId(), u1.getId());
+        Assert.assertEquals(tracking.size(), oldCount + 1);
     }
 }

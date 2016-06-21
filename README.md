@@ -58,4 +58,6 @@ Repository, Service and Controller are the special Components:
 3 Service – Indicates a Service component in the business layer.
 4. Controller – Indicates a controller component in the presentation layer.
 
-Refer to http://stackoverflow.com/questions/6827752/whats-the-difference-between-component-repository-service-annotations-in for their difference.
+[The difference among component, service, service](http://stackoverflow.com/questions/6827752/whats-the-difference-between-component-repository-service-annotations-in)
+
+[Spring annotation tutorial](http://www.techferry.com/articles/spring-annotations.html)

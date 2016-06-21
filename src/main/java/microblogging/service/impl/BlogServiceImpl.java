@@ -1,5 +1,6 @@
 package microblogging.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,5 +51,15 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public List<Blog> findByUserId(String userId) {
         return blogRepo.findByUserId(userId);
+    }
+
+    @Override
+    public List<Blog> findBlogTrackingsByBloggerIdAndFollowerId(String bloggerId, String followerId) {
+        List<Blog> result = new ArrayList<>();
+        List<BlogTracking> blogTrackings = blogTrackingRepo.findByFollowerIdAndBloggerId(followerId, bloggerId);
+        for (BlogTracking bt : blogTrackings) {
+            result.add(blogRepo.findById(bt.getBlogId()));
+        }
+        return result;
     }
 }

@@ -1,5 +1,8 @@
 package microblogging.service.impl;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -7,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import microblogging.model.Blog;
+import microblogging.model.BlogTracking;
+import microblogging.model.Follow;
 import microblogging.model.User;
 import microblogging.repository.BlogRepository;
 import microblogging.repository.BlogTrackingRepository;
@@ -35,7 +40,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findUserByUsername(String username) {
+    public List<User> findUsersByUsername(String username) {
         return userRepo.findByUsername(username);
     }
 
@@ -54,51 +59,45 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void followUser(User a, User b) {
+    public void followUser(User follower, User blogger) {
 
-//        Follow f = new Follow();
-//        f.setUser(b.getId());
-//        f.setFollower(a.getId());
-//        followerDAO.add(f);
-//
-//        List<Blog> blogs = blogDAO.getAllBlogsByUser(b);
-//        for (Blog blog : blogs) {
-//            blogTrackingDAO.addTracking(a.getId(), b.getId(), blog.getId());
-//        }
+        Follow f = new Follow();
+        f.setFollowerId(follower.getId());
+        f.setBloggerId(blogger.getId());
+        followRepo.save(f);
+
+        List<Blog> blogs = blogRepo.findByUserId(blogger.getId());
+        for (Blog blog : blogs) {
+            BlogTracking bt = new BlogTracking(follower.getId(), blogger.getId(), blog.getId());
+            blogTrackingRepo.save(bt);
+        }
     }
 
     @Override
     public Set<User> listAllUsersNotFollowedYet(String username) {
-        return null;
-//        User u = getUserByName(username);
-//        System.out.println("user id = " + u.getId());
-//        List<String> followed = followerDAO.getAllFollower(u.getId());
-//        System.out.println("followed = " + Arrays.toString(followed.toArray()));
-//        List<String> allIds = userDAO.getAllUserIds();
-//        System.out.println("all ids = " + Arrays.toString(allIds.toArray()));
-//        allIds.removeAll(followed);
-//        allIds.remove(u.getId());
-//
-//        System.out.println(" not followed = " + Arrays.toString(allIds.toArray()));
-//        Set<User> result = new HashSet<User>();
-//        for (String id : allIds) {
-//            result.add(userDAO.getUserById(id));
-//        }
-//        return result;
-    }
+        User u = userRepo.findOneByUsername(username);
+        System.out.println("user id = " + u.getId());
+        List<Follow> followed = followRepo.findByBloggerId(u.getId());
+        List<String> followerIds = new ArrayList<>();
+        for (Follow f : followed) {
+            followerIds.add(f.getFollowerId());
+        }
+        System.out.println("followed = " + Arrays.toString(followed.toArray()));
+        List<User> allUsers = userRepo.findAll();
+        List<String> allIds = new ArrayList<>();
+        for (User user : allUsers) {
+            allIds.add(user.getId());
+        }
+        System.out.println("all ids = " + Arrays.toString(allIds.toArray()));
+        allIds.removeAll(followerIds);
+        allUsers.remove(u);
 
-    @Override
-    public List<Blog> getBlogTracking(String name) {
-        return null;
-//        User u = getUserByName(name);
-//
-//        String followerId = u.getId();
-//        List<BlogTracking> trackings = blogTrackingDAO.getTrackingByUser(followerId);
-//        List<Blog> result = new ArrayList<Blog>();
-//        for (BlogTracking track : trackings) {
-//            result.add(blogDAO.getBlogById(track.getBlogId()));
-//        }
-//        return result;
+        System.out.println(" not followed = " + Arrays.toString(allIds.toArray()));
+        Set<User> result = new HashSet<User>();
+        for (String id : allIds) {
+            result.add(userRepo.findOneById(id));
+        }
+        return result;
     }
 
     @Override
@@ -116,5 +115,10 @@ public class UserServiceImpl implements UserService {
 //        }
 //
 //        return users;
+    }
+
+    @Override
+    public User findUserByUsername(String username) {
+        return userRepo.findOneByUsername(username);
     }
 }
