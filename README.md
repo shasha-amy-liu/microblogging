@@ -1,7 +1,7 @@
 # Microblogging
 A microblogging site uses Java, maven, mongodb, spring, jquery and tomcat.
 
-User can post, follow other people and watch their posts.
+User can post a blog, follow other people and watch their posts.
 
 ## Software stack
 * Java 8
@@ -30,14 +30,17 @@ User can post, follow other people and watch their posts.
 3. Install mongodb 3.2 in mac os
    add /opt/local/bin to your path in order to use macports
    `port install mongodb`
-   create db folder if not existing
+   for homebrew
+   `brew update`
+   `brew install mongodb`
+   create default db data folder if not existing
    `sudo mkdir -p /data/db/`
    this command will allow mongod to run as current user
    sudo chown `id -u` /data/db
    mongod
    waiting for connections on port 27017
 
-## Build
+## Build and run
 1. install without testing
    `mvn clean install -Dmaven.test.skip=true`
    `mvn clean install`
@@ -55,6 +58,7 @@ User can post, follow other people and watch their posts.
 4. use maven tomcat plugin
    deploy the war file and deploy to tomcat
    `mvn clean install tomcat7:redeploy`
+5. navigate to http://localhost:8080/microblogging/
 
 ## Spring MVC
 Repository, Service and Controller are the special Components:

@@ -16,7 +16,7 @@ import microblogging.model.User;
  */
 public class MongoUtil {
 
-    private static final Logger log = LoggerFactory.getLogger(MongoUtil.class);
+    private static final Logger logger = LoggerFactory.getLogger(MongoUtil.class);
 
     public static void main(String[] args) {
         MongoOperations mongoOps = null;
@@ -25,7 +25,7 @@ public class MongoUtil {
             mongoOps = new MongoTemplate(new MongoClient("localhost"), "testdb");
             mongoOps.insert(new User("john", "password"));
         } catch (UnknownHostException e) {
-            log.error("unknown host", e);
+            logger.error("unknown host", e);
         } finally {
             if (mongoOps != null) {
                 mongoOps.dropCollection("microblogging_users");

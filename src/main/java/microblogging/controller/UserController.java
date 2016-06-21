@@ -9,6 +9,8 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,13 +20,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import microblogging.model.User;
 import microblogging.service.UserService;
+import microblogging.util.MongoUtil;
 import microblogging.util.PasswordUtil;
 import microblogging.vo.CommonRequestStatus;
 import microblogging.vo.UserVO;
 
 @Controller
-@RequestMapping("user")
+@RequestMapping("/user")
 public class UserController {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     private UserService userService;
@@ -33,6 +38,8 @@ public class UserController {
     public @ResponseBody CommonRequestStatus isLogin(HttpServletRequest request, HttpServletResponse response) {
         User u = (User) request.getSession().getAttribute("user");
         CommonRequestStatus status = new CommonRequestStatus();
+
+        logger.info("enter islogin");
 
         if (u != null) {
             status.setStatus("true");
