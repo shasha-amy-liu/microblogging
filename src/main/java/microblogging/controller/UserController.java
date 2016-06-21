@@ -97,19 +97,20 @@ public class UserController {
 //        User u = userService.getUserByName(username);
 //        return u;
 //    }
-//
-//    @RequestMapping(value = "/add", method = RequestMethod.POST)
-//    public @ResponseBody CommonRequestStatus addUser(HttpServletRequest request, HttpServletResponse response,
-//            @RequestParam(value = "username", required = true) String username,
-//            @RequestParam(value = "password", required = true) String password) {
-//        User u = new User(username, password);
-//        userService.save(u);
-//
-//        CommonRequestStatus status = new CommonRequestStatus();
-//        status.setStatus("true");
-//        return status;
-//    }
-//
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public @ResponseBody CommonRequestStatus addUser(HttpServletRequest request, HttpServletResponse response,
+            @RequestParam(value = "username", required = true) String username,
+            @RequestParam(value = "password", required = true) String password) {
+        password = PasswordUtil.getInstance().encode(password);
+        User u = new User(username, password);
+        userService.save(u);
+
+        CommonRequestStatus status = new CommonRequestStatus();
+        status.setStatus("true");
+        return status;
+    }
+
 //    @RequestMapping(value = "/listAllUsersNotFollowedYet", method = RequestMethod.GET)
 //    public @ResponseBody Set<UserVO> listAllUsersNotFollowedYet(HttpServletRequest request,
 //            HttpServletResponse response) {
@@ -130,24 +131,24 @@ public class UserController {
 //
 //        return "index";
 //    }
-//
-//    @RequestMapping(value = { "/checkLogin", "/login" }, method = RequestMethod.POST)
-//    public @ResponseBody CommonRequestStatus checkLogin(HttpServletRequest request, HttpServletResponse response,
-//            @RequestParam(value = "username", required = true) String username,
-//            @RequestParam(value = "password", required = true) String password) {
-//
-//        User storedUser = userService.getUserByName(username);
-//
-//        CommonRequestStatus status = new CommonRequestStatus();
-//        if (PasswordUtil.getInstance().check(password, storedUser.getPassword())) {
-//            status.setStatus("true");
-//            if (request.getSession().getAttribute("user") == null) {
-//                request.getSession().setAttribute("user", storedUser);
-//            }
-//        } else {
-//            status.setStatus("false");
-//        }
-//
-//        return status;
-//    }
+
+    @RequestMapping(value = { "/checkLogin", "/login" }, method = RequestMethod.POST)
+    public @ResponseBody CommonRequestStatus checkLogin(HttpServletRequest request, HttpServletResponse response,
+            @RequestParam(value = "username", required = true) String username,
+            @RequestParam(value = "password", required = true) String password) {
+
+        User storedUser = userService.findUserByUsername(username);
+
+        CommonRequestStatus status = new CommonRequestStatus();
+        if (PasswordUtil.getInstance().check(password, storedUser.getPassword())) {
+            status.setStatus("true");
+            if (request.getSession().getAttribute("user") == null) {
+                request.getSession().setAttribute("user", storedUser);
+            }
+        } else {
+            status.setStatus("false");
+        }
+
+        return status;
+    }
 }
