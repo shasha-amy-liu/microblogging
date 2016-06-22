@@ -56,7 +56,7 @@
           }
         }
       );
-  
+
     // populate my blogs panel
     var allBlogsUrl = "/" + rootPath + "/blog/list";
     $.get(allBlogsUrl,
@@ -64,13 +64,13 @@
         for (var i = 0; i < data.length; i++) {
           var item = data[i];
           $( '#myBlogPanel').dataTable().fnAddData( [
-            item.timeStamp,
-              item.content
+            item.creationDate,
+            item.content
           ] );
-        }          
+        }
       }
     );
-  
+
     // populate my blog tracking stream
     var allBlogsUrl = "/" + rootPath + "/blog/tracking";
     var ctr = 1;
@@ -84,13 +84,14 @@
           cache:true
       },
       function(data) {
+        console.log(data);
         $( '#myTimeStream').dataTable().fnClearTable();
           for (var i = 0; i < data.length; i++) {
           var item = data[i];
           $( '#myTimeStream').dataTable().fnAddData( [
-            item.timeStamp,
-              item.content,
-              item.blogger
+            item.creationDate,
+            item.content,
+            item.bloggerUsername
           ] );
         }
       }
@@ -214,9 +215,9 @@
               for (var i = 0; i < data.length; i++) {
                 var item = data[i];
                 $( '#myTimeStream').dataTable().fnAddData( [
-                  item.timeStamp,
-                    item.content,
-                    item.blogger
+                  item.creationDate,
+                  item.content,
+                  item.bloggerUsername
                 ] );
               }
               $( "#peopleSearch" ).val('');

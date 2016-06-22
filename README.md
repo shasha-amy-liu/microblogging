@@ -70,3 +70,9 @@ Repository, Service and Controller are the special Components:
 [The difference among component, service, service](http://stackoverflow.com/questions/6827752/whats-the-difference-between-component-repository-service-annotations-in)
 
 [Spring annotation tutorial](http://www.techferry.com/articles/spring-annotations.html)
+
+# Issue tracker
+* add exception handling
+* add version annotation to provide optimistic locking
+* finish follow
+* <del>fix datatable warnings</del>
