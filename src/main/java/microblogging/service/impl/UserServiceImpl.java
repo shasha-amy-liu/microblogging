@@ -49,6 +49,7 @@ public class UserServiceImpl implements UserService {
         return userRepo.save(u);
     }
 
+    // FIXME: implement this later
     @Override
     public void publishBlog(User a, Blog blog) {
 //        // get all followers
@@ -102,7 +103,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> listAmFollowing(String username) {
-        return null;
+        return new ArrayList<User>();
 //        User u = getUserByName(username);
 //
 //        String id = u.getId();

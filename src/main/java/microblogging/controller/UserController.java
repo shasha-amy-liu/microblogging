@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import microblogging.model.User;
 import microblogging.service.UserService;
-import microblogging.util.MongoUtil;
 import microblogging.util.PasswordUtil;
 import microblogging.vo.CommonRequestStatus;
 import microblogging.vo.UserVO;
@@ -35,7 +33,8 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value = "/isLogin", method = RequestMethod.GET)
-    public @ResponseBody CommonRequestStatus isLogin(HttpServletRequest request, HttpServletResponse response) {
+    public @ResponseBody CommonRequestStatus isLogin(HttpServletRequest request,
+            HttpServletResponse response) {
         User u = (User) request.getSession().getAttribute("user");
         CommonRequestStatus status = new CommonRequestStatus();
 
@@ -50,26 +49,27 @@ public class UserController {
 
         return status;
     }
-//
-//    @RequestMapping(value = "/amFollowing", method = RequestMethod.GET)
-//    public @ResponseBody List<UserVO> amFollowing(HttpServletRequest request, HttpServletResponse response) {
-//        User u = (User) request.getSession().getAttribute("user");
-//        String username = u.getUsername();
-//
-//        List<User> amFollowing = userService.listAmFollowing(username);
-//        if (amFollowing == null || amFollowing.size() == 0) {
-//            return new ArrayList<UserVO>();
-//        }
-//
-//        List<UserVO> result = new ArrayList<UserVO>();
-//
-//        for (User user : amFollowing) {
-//            result.add(new UserVO(user));
-//        }
-//
-//        return result;
-//    }
-//
+
+    @RequestMapping(value = "/isFollowing", method = RequestMethod.GET)
+    public @ResponseBody List<UserVO> isFollowing(HttpServletRequest request,
+            HttpServletResponse response) {
+        User u = (User) request.getSession().getAttribute("user");
+        String username = u.getUsername();
+
+        List<User> amFollowing = userService.listAmFollowing(username);
+        if (amFollowing == null || amFollowing.isEmpty()) {
+            return new ArrayList<UserVO>();
+        }
+
+        List<UserVO> result = new ArrayList<UserVO>();
+
+        for (User user : amFollowing) {
+            result.add(new UserVO(user));
+        }
+
+        return result;
+    }
+
 //    @RequestMapping(value = "/follow", method = RequestMethod.GET)
 //    public @ResponseBody CommonRequestStatus follow(HttpServletRequest request, HttpServletResponse response,
 //            @RequestParam(value = "people", required = true) String people) {
@@ -99,7 +99,8 @@ public class UserController {
 //    }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public @ResponseBody CommonRequestStatus addUser(HttpServletRequest request, HttpServletResponse response,
+    public @ResponseBody CommonRequestStatus addUser(HttpServletRequest request,
+            HttpServletResponse response,
             @RequestParam(value = "username", required = true) String username,
             @RequestParam(value = "password", required = true) String password) {
         password = PasswordUtil.getInstance().encode(password);
@@ -111,34 +112,34 @@ public class UserController {
         return status;
     }
 
-//    @RequestMapping(value = "/listAllUsersNotFollowedYet", method = RequestMethod.GET)
-//    public @ResponseBody Set<UserVO> listAllUsersNotFollowedYet(HttpServletRequest request,
-//            HttpServletResponse response) {
-//        User u = (User) request.getSession().getAttribute("user");
-//        String username = u.getUsername();
-//
-//        Set<User> users = userService.listAllUsersNotFollowedYet(username);
-//        Set<UserVO> result = new HashSet<UserVO>();
-//        for (User user : users) {
-//            result.add(new UserVO(user));
-//        }
-//        return result;
-//    }
-//
-//    @RequestMapping(value = "/logout", method = RequestMethod.GET)
-//    public String logout(HttpServletRequest request, HttpServletResponse response) {
-//        request.getSession().invalidate();
-//
-//        return "index";
-//    }
+    @RequestMapping(value = "/listAllUsersNotFollowedYet", method = RequestMethod.GET)
+    public @ResponseBody Set<UserVO> listAllUsersNotFollowedYet(HttpServletRequest request,
+            HttpServletResponse response) {
+        User u = (User) request.getSession().getAttribute("user");
+        String username = u.getUsername();
+
+        Set<User> users = userService.listAllUsersNotFollowedYet(username);
+        Set<UserVO> result = new HashSet<UserVO>();
+        for (User user : users) {
+            result.add(new UserVO(user));
+        }
+        return result;
+    }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
+        request.getSession().invalidate();
+
+        return "index";
+    }
 
     @RequestMapping(value = { "/checkLogin", "/login" }, method = RequestMethod.POST)
-    public @ResponseBody CommonRequestStatus checkLogin(HttpServletRequest request, HttpServletResponse response,
+    public @ResponseBody CommonRequestStatus checkLogin(HttpServletRequest request,
+            HttpServletResponse response,
             @RequestParam(value = "username", required = true) String username,
             @RequestParam(value = "password", required = true) String password) {
 
         User storedUser = userService.findUserByUsername(username);
-
         CommonRequestStatus status = new CommonRequestStatus();
         if (PasswordUtil.getInstance().check(password, storedUser.getPassword())) {
             status.setStatus("true");

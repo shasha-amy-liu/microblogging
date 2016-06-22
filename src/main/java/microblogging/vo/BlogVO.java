@@ -1,10 +1,7 @@
 package microblogging.vo;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import microblogging.model.Blog;
 import microblogging.model.User;
-import microblogging.repository.UserRepository;
 import microblogging.util.MicrobloggingUtil;
 
 public class BlogVO {
@@ -15,13 +12,8 @@ public class BlogVO {
     private String bloggerId;
     private String id;
 
-    @Autowired
-    private UserRepository userRepo;
-
-    public BlogVO(Blog blog) {
-        String bloggerId = blog.getUserId();
-        setBloggerId(bloggerId);
-        User blogger = userRepo.findOneById(bloggerId);
+    public BlogVO(Blog blog, User blogger) {
+        setBloggerId(blogger.getId());
         setBloggerUsername(blogger.getUsername());
         setContent(blog.getContent());
         setId(blog.getId());

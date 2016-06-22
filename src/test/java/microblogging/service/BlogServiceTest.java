@@ -33,10 +33,10 @@ public class BlogServiceTest {
 
         String blogContent = "some random content";
 
-        Assert.assertNotNull(blogService.save(blogContent, u.getUsername()));
+        Assert.assertNotNull(blogService.save(blogContent, u.getId()));
 
         String blogContent2 = "some random content 2";
-        Assert.assertNotNull(blogService.save(blogContent2, u.getUsername()));
+        Assert.assertNotNull(blogService.save(blogContent2, u.getId()));
     }
 
     @Test
@@ -46,10 +46,10 @@ public class BlogServiceTest {
 
         String blogContent = "some random content";
 
-        Assert.assertNotNull(blogService.save(blogContent, u.getUsername()));
+        Assert.assertNotNull(blogService.save(blogContent, u.getId()));
 
         String blogContent2 = "some random content 2";
-        Assert.assertNotNull(blogService.save(blogContent2, u.getUsername()));
+        Assert.assertNotNull(blogService.save(blogContent2, u.getId()));
 
         List<Blog> result = blogService.findByUserId(u.getId());
         Assert.assertEquals(2, result.size());

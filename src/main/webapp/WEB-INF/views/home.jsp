@@ -16,10 +16,10 @@
     .ui-resizable-se {
       bottom: 17px;
     }
-    #amFollowingPanel .ui-selecting { background: #FECA40; }
-    #amFollowingPanel .ui-selected { background: #F39814; color: white; }
-    #amFollowingPanel { list-style-type: none; margin: 0; padding: 0; width: 60%; }
-    #amFollowingPanel li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
+    #isFollowingPanel .ui-selecting { background: #FECA40; }
+    #isFollowingPanel .ui-selected { background: #F39814; color: white; }
+    #isFollowingPanel { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+    #isFollowingPanel li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
   </style>
   <script type="text/javascript">
   
@@ -32,7 +32,6 @@
   
     $.ajax({
       url: url,
-      async: false,
       success: function(data){
         if (data.status == 'false') {
              window.location.replace("/" + rootPath);
@@ -41,19 +40,19 @@
            }
       }
     });
-  
+
     $("#myBlogPanel").dataTable();
     $("#myTimeStream").dataTable();
-    $( '#amFollowingPanel').selectable();
-    
-    // populate I am following panel amFollowingPanel
-    url = "/" + rootPath + '/user/amFollowing';
+    $( '#isFollowingPanel').selectable();
+
+    // populate I am following panel isFollowingPanel
+    url = "/" + rootPath + '/user/isFollowing';
     $.get(url,
         function(data) {
-          $( '#amFollowingPanel').val('');
+          $( '#isFollowingPanel').val('');
           for (var i = 0; i < data.length; i++) {
             var item = data[i];
-            $( '#amFollowingPanel').append( $('<li/>', {id: item.id, text: item.username, "class": "ui-widget-content" }));
+            $( '#isFollowingPanel').append( $('<li/>', {id: item.id, text: item.username, "class": "ui-widget-content" }));
           }
         }
       );
@@ -223,19 +222,19 @@
               $( "#peopleSearch" ).val('');
               people = [];
               
-              var url = "/" + rootPath + '/user/amFollowing';
+              var url = "/" + rootPath + '/user/isFollowing';
               $.get(url,
                   function(data) {
-                    $( '#amFollowingPanel :li').val('');
+                    $( '#isFollowingPanel :li').val('');
                     for (var i = 0; i < data.length; i++) {
                       var item = data[i];
-                      $( '#amFollowingPanel').append( $('<li/>', {id: item.id, text: item.username, "class": "ui-widget-content" }));
-                    }          
+                      $( '#isFollowingPanel').append( $('<li/>', {id: item.id, text: item.username, "class": "ui-widget-content" }));
+                    }
                   }
                 );
             }
-          );    
-      });  
+          );
+      });
     });
   });
   
@@ -263,7 +262,7 @@
     <input type="button" id='follow' value='Follow' />
     <div>
     <h3>I am following:</h3>
-    <ol id="amFollowingPanel">    
+    <ol id="isFollowingPanel">    
     </ol>
     </div>
   </td>

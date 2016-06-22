@@ -33,8 +33,8 @@ public class BlogServiceImpl implements BlogService {
     private BlogRepository blogRepo;
 
     @Override
-    public Blog save(String blogContent, String username) {
-        User blogger = userRepo.findOneByUsername(username);
+    public Blog save(String blogContent, String userId) {
+        User blogger = userRepo.findOneById(userId);
 
         Blog blog = new Blog(blogger.getId(), blogContent);
         blogRepo.save(blog);

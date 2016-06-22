@@ -71,11 +71,11 @@ public class UserServiceTest {
         userService.followUser(u1, u);
 
         String blogContent = "some random content";
-        Blog uBlog = blogService.save(blogContent, u.getUsername());
+        Blog uBlog = blogService.save(blogContent, u.getId());
         userService.publishBlog(u, uBlog);
 
         String blogContent1 = "u publish some random content 1";
-        Blog uBlog1 = blogService.save(blogContent1, u.getUsername());
+        Blog uBlog1 = blogService.save(blogContent1, u.getId());
         System.out.println("id1 = " + uBlog1.getId());
 
         userService.publishBlog(u, uBlog1);
@@ -123,10 +123,10 @@ public class UserServiceTest {
         // u2 publish blogs
         String blogContent = "some random content";
 
-        Assert.assertNotNull(blogService.save(blogContent, u2.getUsername()));
+        Assert.assertNotNull(blogService.save(blogContent, u2.getId()));
 
         String blogContent2 = "some random content 2";
-        Assert.assertNotNull(blogService.save(blogContent2, u2.getUsername()));
+        Assert.assertNotNull(blogService.save(blogContent2, u2.getId()));
 
         System.out.println("u2 id = " + u2.getId());
 
@@ -139,7 +139,7 @@ public class UserServiceTest {
 
         // u2 continue to publish blog
         String blogContent3 = "some random content 3";
-        Assert.assertNotNull(blogService.save(blogContent3, u2.getUsername()));
+        Assert.assertNotNull(blogService.save(blogContent3, u2.getId()));
 
         // should be old size +1
         tracking = blogService.findBlogTrackingsByBloggerIdAndFollowerId(u2.getId(), u1.getId());
