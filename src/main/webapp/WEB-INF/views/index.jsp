@@ -97,23 +97,23 @@
                   url: pathname + "user/add",
                   type: 'POST',
                   data: {username: register_name.val(), password: register_password.val()},
-                  async: false,
                   success: function(data){
                     if (data.status == 'true') {
                       close = true;
                       updateTips('User created successfully, Please log in again!', tips);
                     } else {
                       updateTips('Duplicate User name, Please try again!', tips);
-                    }                  
+                    }
+
+                    if (close) {
+                      window.setTimeout(function() {
+                        $( "#dialog-form" ).dialog( "close" );
+                      }, 1000 );
+                    }
                   }
               });
             }
-            
-            if (close) {
-              window.setTimeout(function() {
-                $( "#dialog-form" ).dialog( "close" );
-              }, 1000 );            
-            }
+
           },
           Cancel: function() {
             $( this ).dialog( "close" );
@@ -162,7 +162,6 @@
                   url: window.location.pathname + "user/checkLogin",
                   type: 'POST',
                   data: {username: login_name.val(), password: login_password.val()},
-                  async: false,
                   success: function(data){
                     if (data.status == "true") {
                       var pathname = window.location.pathname;

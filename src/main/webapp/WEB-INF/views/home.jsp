@@ -22,14 +22,14 @@
     #isFollowingPanel li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
   </style>
   <script type="text/javascript">
-  
+
   $(document).ready(function() {
     var pathnames = $(location).attr('pathname').split('/');
     console.log(pathnames);
-  
+
     var rootPath = pathnames[1]; // microblogging
     var url = "/" + rootPath + '/user/isLogin';
-  
+
     $.ajax({
       url: url,
       success: function(data){
@@ -96,26 +96,26 @@
         }
       }
     );
-      
-      function updateTips( t, tips) {
+
+    function updateTips( t, tips) {
       tips.text( t )
         .addClass( "ui-state-highlight" );
       setTimeout(function() {
         tips.removeClass( "ui-state-highlight", 1500 );
       }, 500 );
     };
-      
-      $( "#logout" )
+
+    $( "#logout" )
     .button()
     .click(function() {
       $.get("/" + rootPath + '/user/logout', function(data){
-        window.location.replace("/" + rootPath);    
+        window.location.replace("/" + rootPath);
       });  
     });
-  
-      var tips = $( ".validateTips" );
-      
-      $( "#postIt" )
+
+    var tips = $( ".validateTips" );
+
+    $( "#postIt" )
     .button()
     .click(function() {
       var blogContent = $( "#resizable" ).val();
@@ -131,28 +131,28 @@
               data.timeStamp,
               data.content
               ]);
-              
+
               $( "#resizable" ).val('');
         });
       } else {
         updateTips( "Please input some content", tips);
-      }  
+      }
     });
-      
-      $( "#resizable" ).resizable({
+
+    $( "#resizable" ).resizable({
         animate: true
     });
-      
-      function split( val ) {
+
+    function split( val ) {
       return val.split( /,\s*/ );
     }
     function extractLast( term ) {
       return split( term ).pop();
     }
-      
-      var people = [];
-      
-      $( "#peopleSearch" )
+
+    var people = [];
+
+    $( "#peopleSearch" )
     // don't navigate away from the field on tab when selecting an item
     .bind( "keydown", function( event ) {
       if ( event.keyCode === $.ui.keyCode.TAB &&
@@ -162,11 +162,10 @@
     })
     .bind('focusin', function( event) {
       if (people.length == 0) {
-        // look for the current people in the system that are not followed by the user yet
+        // look for the current people in the system that are not followed by the current user yet
         var url = "/" + rootPath + '/user/listAllUsersNotFollowedYet';
         $.ajax({
           url: url,
-          async: false,
           success: function(data){
             for (var i = 0; i < data.length; i++) {
               people.push(data[i].username);
@@ -174,7 +173,6 @@
           }
         });
       }
-      
     })
     .autocomplete({
       minLength: 0,
@@ -199,9 +197,8 @@
         return false;
       }
     });
-      
-      
-      $( "#follow" )
+
+    $( "#follow" )
     .button()
     .click(function() {
       var peopleToFollow = $('#peopleSearch').val();
@@ -222,7 +219,7 @@
               }
               $( "#peopleSearch" ).val('');
               people = [];
-              
+
               var url = "/" + rootPath + '/user/isFollowing';
               $.get(url,
                   function(data) {
@@ -238,7 +235,6 @@
       });
     });
   });
-  
   </script>
 </head>
 
@@ -263,7 +259,7 @@
     <input type="button" id='follow' value='Follow' />
     <div>
     <h3>I am following:</h3>
-    <ol id="isFollowingPanel">    
+    <ol id="isFollowingPanel">
     </ol>
     </div>
   </td>

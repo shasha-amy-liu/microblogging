@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import microblogging.model.Blog;
 import microblogging.model.User;
 import microblogging.service.BlogService;
-import microblogging.service.UserService;
 import microblogging.vo.BlogVO;
 
 @Controller
@@ -29,9 +28,6 @@ public class BlogController {
 
     @Autowired
     private BlogService blogService;
-
-    @Autowired
-    private UserService userService;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public @ResponseBody List<BlogVO> list(HttpServletRequest request, HttpServletResponse response) {
@@ -71,7 +67,7 @@ public class BlogController {
             HttpServletResponse response,
             @RequestParam(value = "blogContent", required = true) String blogContent) {
         // get user info
-        User user = ((User) request.getSession().getAttribute("user"));
+        User user = (User) request.getSession().getAttribute("user");
 
         // save blog
         Blog blog = blogService.save(blogContent, user.getId());

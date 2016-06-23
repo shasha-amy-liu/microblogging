@@ -20,8 +20,7 @@ public interface UserService {
 
     User findUserByUsername(String username);
 
-    Set<User> listAllUsersNotFollowedYet(String username);
+    Set<User> listAllUsersNotFollowedYet(String userId);
 
-    List<User> listAmFollowing(String username);
-
+    List<User> listIsFollowing(String userId);
 }

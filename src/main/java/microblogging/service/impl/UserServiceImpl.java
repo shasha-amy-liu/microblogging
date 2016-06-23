@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,8 @@ import microblogging.service.UserService;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Autowired
     private FollowRepository followRepo;
@@ -75,8 +79,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Set<User> listAllUsersNotFollowedYet(String username) {
-        User u = userRepo.findOneByUsername(username);
+    public Set<User> listAllUsersNotFollowedYet(String userId) {
+        User u = userRepo.findOneById(userId);
         System.out.println("user id = " + u.getId());
         List<Follow> followed = followRepo.findByBloggerId(u.getId());
         List<String> followerIds = new ArrayList<>();
@@ -84,38 +88,37 @@ public class UserServiceImpl implements UserService {
             followerIds.add(f.getFollowerId());
         }
         System.out.println("followed = " + Arrays.toString(followed.toArray()));
-        List<User> allUsers = userRepo.findAll();
-        List<String> allIds = new ArrayList<>();
-        for (User user : allUsers) {
-            allIds.add(user.getId());
+        List<User> restUsers = userRepo.findByIdNot(userId);
+        List<String> restIds = new ArrayList<>();
+        for (User user : restUsers) {
+            restIds.add(user.getId());
         }
-        System.out.println("all ids = " + Arrays.toString(allIds.toArray()));
-        allIds.removeAll(followerIds);
-        allUsers.remove(u);
+        System.out.println("rest ids = " + Arrays.toString(restIds.toArray()));
+        restIds.removeAll(followerIds);
 
-        System.out.println(" not followed = " + Arrays.toString(allIds.toArray()));
+        System.out.println(" not followed = " + Arrays.toString(restIds.toArray()));
         Set<User> result = new HashSet<User>();
-        for (String id : allIds) {
+        for (String id : restIds) {
             result.add(userRepo.findOneById(id));
         }
         return result;
     }
 
     @Override
-    public List<User> listAmFollowing(String username) {
-        return new ArrayList<User>();
-//        User u = getUserByName(username);
-//
-//        String id = u.getId();
-//
-//        List<String> amFollowingIds = followerDAO.getAllFollowing(id);
-//        List<User> users = new ArrayList<User>();
-//
-//        for (String fid : amFollowingIds) {
-//            users.add(userDAO.getUserById(fid));
-//        }
-//
-//        return users;
+    public List<User> listIsFollowing(String userId) {
+        logger.info(String.format("userId = %s", userId));
+        User u = userRepo.findOneById(userId);
+        logger.info(String.format("user = %s", u));
+
+        logger.info(followRepo == null ? "null" : "not null");
+        List<Follow> isFollowingIds = followRepo.findByFollowerId(u.getId());
+        List<User> users = new ArrayList<User>();
+
+        for (Follow follow : isFollowingIds) {
+            users.add(userRepo.findOneById(follow.getBloggerId()));
+        }
+
+        return users;
     }
 
     @Override

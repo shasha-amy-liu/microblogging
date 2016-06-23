@@ -17,4 +17,7 @@ public interface UserRepository extends MongoRepository<User, String> {
     User findOneByUsername(String username);
 
     User findOneById(String userId);
+
+    // Not, where x.id <> ?1
+    List<User> findByIdNot(String userId);
 }

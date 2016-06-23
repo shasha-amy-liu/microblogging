@@ -55,8 +55,9 @@ User can post a blog, follow other people and watch their posts.
    add a new user to tomcat-users.xml
    `<user username="tomcatscript" password="tomcatscript" roles="manager-script, manager-jmx"/>`
    start tomcat and run on port 8080
+   tomcat_home/bin/startup.sh
 4. use maven tomcat plugin
-   deploy the war file and deploy to tomcat
+   create the war file and deploy to tomcat
    `mvn clean install tomcat7:redeploy`
 5. navigate to http://localhost:8080/microblogging/
 
@@ -72,7 +73,8 @@ Repository, Service and Controller are the special Components:
 [Spring annotation tutorial](http://www.techferry.com/articles/spring-annotations.html)
 
 # Issue tracker
+* apply rest url pattern
 * add exception handling
 * add version annotation to provide optimistic locking
-* finish follow
+* fix follow function
 * <del>fix datatable warnings</del>

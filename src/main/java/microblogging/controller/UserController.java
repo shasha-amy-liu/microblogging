@@ -54,9 +54,8 @@ public class UserController {
     public @ResponseBody List<UserVO> isFollowing(HttpServletRequest request,
             HttpServletResponse response) {
         User u = (User) request.getSession().getAttribute("user");
-        String username = u.getUsername();
 
-        List<User> amFollowing = userService.listAmFollowing(username);
+        List<User> amFollowing = userService.listIsFollowing(u.getId());
         if (amFollowing == null || amFollowing.isEmpty()) {
             return new ArrayList<UserVO>();
         }
@@ -70,27 +69,25 @@ public class UserController {
         return result;
     }
 
-//    @RequestMapping(value = "/follow", method = RequestMethod.GET)
-//    public @ResponseBody CommonRequestStatus follow(HttpServletRequest request, HttpServletResponse response,
-//            @RequestParam(value = "people", required = true) String people) {
-//        String[] input = people.split(", ");
-//
-//        User u = (User) request.getSession().getAttribute("user");
-//        String username = u.getUsername();
-//        u = userService.getUserByName(username);
-//
-//        for (String s : input) {
-//            if (s != null && s.length() > 0) {
-//                User b = userService.getUserByName(s);
-//                userService.followUser(u, b);
-//            }
-//        }
-//
-//        CommonRequestStatus status = new CommonRequestStatus();
-//        status.setStatus("true");
-//        return status;
-//    }
-//
+    @RequestMapping(value = "/follow", method = RequestMethod.GET)
+    public @ResponseBody CommonRequestStatus follow(HttpServletRequest request, HttpServletResponse response,
+            @RequestParam(value = "people", required = true) String people) {
+        String[] input = people.split(", ");
+
+        User u = (User) request.getSession().getAttribute("user");
+
+        for (String s : input) {
+            if (s != null && !s.isEmpty()) {
+                User b = userService.findUserByUsername(s);
+                userService.followUser(u, b);
+            }
+        }
+
+        CommonRequestStatus status = new CommonRequestStatus();
+        status.setStatus("true");
+        return status;
+    }
+
 //    @RequestMapping(value = "/get", method = RequestMethod.GET)
 //    public @ResponseBody User getUser(HttpServletRequest request, HttpServletResponse response,
 //            @RequestParam(value = "username", required = true) String username) {
@@ -116,9 +113,8 @@ public class UserController {
     public @ResponseBody Set<UserVO> listAllUsersNotFollowedYet(HttpServletRequest request,
             HttpServletResponse response) {
         User u = (User) request.getSession().getAttribute("user");
-        String username = u.getUsername();
 
-        Set<User> users = userService.listAllUsersNotFollowedYet(username);
+        Set<User> users = userService.listAllUsersNotFollowedYet(u.getId());
         Set<UserVO> result = new HashSet<UserVO>();
         for (User user : users) {
             result.add(new UserVO(user));

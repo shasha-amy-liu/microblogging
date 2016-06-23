@@ -105,7 +105,7 @@ public class UserServiceTest {
         userService.followUser(u2, u1);
         userService.followUser(u3, u1);
 
-        Set<User> notFollowedYet = userService.listAllUsersNotFollowedYet(u1Name);
+        Set<User> notFollowedYet = userService.listAllUsersNotFollowedYet(u1.getId());
         for (User user : notFollowedYet) {
             System.out.println(user.getId());
         }
