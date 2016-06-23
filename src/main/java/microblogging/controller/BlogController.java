@@ -30,9 +30,10 @@ public class BlogController {
     private BlogService blogService;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public @ResponseBody List<BlogVO> list(HttpServletRequest request, HttpServletResponse response) {
-        // get user info
-        User user = ((User) request.getSession().getAttribute("user"));
+    public @ResponseBody List<BlogVO> list(HttpServletRequest request,
+            HttpServletResponse response) {
+        // get user from session
+        User user = (User) request.getSession().getAttribute("user");
 
         List<Blog> blogs = blogService.findByUserId(user.getId());
         List<BlogVO> result = new ArrayList<BlogVO>();
@@ -44,16 +45,16 @@ public class BlogController {
     }
 
     @RequestMapping(value = "/tracking", method = RequestMethod.GET)
-    public @ResponseBody List<BlogVO> tracking(HttpServletRequest request, HttpServletResponse response) {
+    public @ResponseBody List<BlogVO> tracking(HttpServletRequest request,
+            HttpServletResponse response) {
         List<BlogVO> result = new ArrayList<>();
-        // get user info
-        User user = ((User) request.getSession().getAttribute("user"));
+        // get user from session
+        User user = (User) request.getSession().getAttribute("user");
         if (user != null) {
             String userId = user.getId();
 
             List<Blog> blogs = blogService.findByUserId(userId);
             logger.info(String.format("blog size = %d", blogs.size()));
-            result = new ArrayList<BlogVO>();
             for (Blog blog : blogs) {
                 result.add(new BlogVO(blog, user));
             }
@@ -66,7 +67,7 @@ public class BlogController {
     public @ResponseBody BlogVO add(HttpServletRequest request,
             HttpServletResponse response,
             @RequestParam(value = "blogContent", required = true) String blogContent) {
-        // get user info
+        // get user from session
         User user = (User) request.getSession().getAttribute("user");
 
         // save blog

@@ -76,5 +76,5 @@ Repository, Service and Controller are the special Components:
 * apply rest url pattern
 * add exception handling
 * add version annotation to provide optimistic locking
-* fix follow function
+* <del>fix follow function</del>
 * <del>fix datatable warnings</del>
